@@ -307,10 +307,14 @@
         <a href="#services" class="nav-link py-1" onclick="closeMobileMenu()">Services</a>
         <a href="#about"    class="nav-link py-1" onclick="closeMobileMenu()">About</a>
         <a href="#contact"  class="nav-link py-1" onclick="closeMobileMenu()">Contact</a>
-        <a href="payment.html" class="nav-link py-1" onclick="closeMobileMenu()">Pay Invoice</a>
         <a href="#faq"      class="nav-link py-1" onclick="closeMobileMenu()">FAQ</a>
-        </a>
-        <a href="#contact"  class="btn-primary px-5 py-3 rounded-full text-sm font-semibold text-center mt-1" onclick="closeMobileMenu()">Book Consultation</a>
+        <div class="flex flex-col gap-2 mt-1">
+          <a href="#contact"  class="btn-primary px-5 py-3 rounded-full text-sm font-semibold text-center" onclick="closeMobileMenu()">Book Consultation</a>
+          <a href="payment.html" class="btn-ghost px-5 py-3 rounded-full text-sm font-medium text-center flex items-center justify-center gap-2 bg-white" onclick="closeMobileMenu()">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+            Pay Invoice
+          </a>
+        </div>
       </div>
     </div>
   </header>
@@ -609,7 +613,7 @@
       </div>
 
       <!-- Photo — 2 cols -->
-      <div class="md:col-span-2 flex justify-center self-start fade-up" style="transition-delay:0.15s; padding-top: 3rem;">
+      <div class="md:col-span-2 flex justify-center self-start fade-up order-first md:order-last" style="transition-delay:0.15s; padding-top: 3rem;">
         <div class="relative">
           <div class="absolute -inset-4 rounded-3xl" style="background: radial-gradient(ellipse at center, rgba(42,180,180,0.15) 0%, transparent 70%)"></div>
           <img
@@ -814,6 +818,10 @@
         <div>
           <h4 class="font-semibold text-white text-sm mb-4 tracking-wide">Consulting Locations</h4>
           <div class="flex flex-col gap-3">
+            <div class="flex items-center gap-2 mb-1">
+              <p class="text-navy-300 text-sm">New Office</p>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded-full" style="background: rgba(42,180,180,0.15); color: #2ab4b4;">Coming Soon</span>
+            </div>
             <a href="https://www.northwestprivatehospital.com.au/" target="_blank" rel="noopener" class="group">
               <p class="text-navy-300 text-sm group-hover:text-teal-400 transition-colors">North West Private Hospital</p>
               <p class="text-navy-500 text-xs">137 Flockton St, Everton Park QLD</p>
@@ -830,10 +838,6 @@
               <p class="text-navy-300 text-sm group-hover:text-teal-400 transition-colors">Peninsula Private Hospital</p>
               <p class="text-navy-500 text-xs">Cnr George & Florence Sts, Kippa-Ring QLD</p>
             </a>
-            <div class="flex items-center gap-2 mt-1">
-              <p class="text-navy-300 text-sm">New Office</p>
-              <span class="text-xs font-semibold px-2 py-0.5 rounded-full" style="background: rgba(42,180,180,0.15); color: #2ab4b4;">Coming Soon</span>
-            </div>
           </div>
         </div>
       </div>
