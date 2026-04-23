@@ -1,0 +1,11 @@
+node_modules/
+temporary screenshots/
+serve.mjs
+screenshot.mjs
+package.json
+package-lock.json
+CLAUDE(1).md
+edit_anna.py
+Anna 1.png
+*.jsonl
+.DS_Store
