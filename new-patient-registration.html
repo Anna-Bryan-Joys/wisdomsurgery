@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Patient Registration — Wisdom Surgery Clinic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal:  { 50:'#f0fbfb',100:'#d9f4f4',200:'#b2e9e9',300:'#7dd8d8',400:'#3ec4c4',500:'#2ab4b4',600:'#1e9696',700:'#187878',800:'#155f5f',900:'#124f4f' },
+            navy:  { 50:'#eef3f8',100:'#d5e1ee',200:'#adc4dd',300:'#7aa0c6',400:'#4d7daf',500:'#2e5f94',600:'#1e4a7a',700:'#153964',800:'#0f2a4d',900:'#091d38' },
+          },
+          fontFamily: {
+            display: ['"Playfair Display"','Georgia','serif'],
+            sans:    ['"DM Sans"','system-ui','sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    /* ── Site nav ── */
+    .nav-glass {
+      background: rgba(248,253,253,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(42,180,180,0.12);
+      box-shadow: 0 2px 24px rgba(42,180,180,0.06),0 1px 4px rgba(0,0,0,0.04);
+    }
+    .nav-cta {
+      background: linear-gradient(135deg,#2ab4b4 0%,#1e9696 100%);
+      color:#fff;
+      box-shadow: 0 4px 18px rgba(42,180,180,0.35),0 1px 4px rgba(0,0,0,0.1);
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s ease;
+    }
+    .nav-cta:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(42,180,180,0.45),0 2px 8px rgba(0,0,0,0.1); }
+    .nav-cta:focus-visible { outline:3px solid rgba(42,180,180,0.5); outline-offset:3px; }
+    .nav-cta-ghost {
+      color:#2ab4b4;
+      border:1.5px solid rgba(42,180,180,0.4);
+      transition: background 0.2s ease,border-color 0.2s ease,transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .nav-cta-ghost:hover { background:rgba(42,180,180,0.07); border-color:#2ab4b4; transform:translateY(-1px); }
+    .nav-cta-ghost:focus-visible { outline:3px solid rgba(42,180,180,0.5); outline-offset:3px; }
+    .nav-link {
+      position:relative; color:#4a6274; font-weight:500; font-size:0.9rem; letter-spacing:0.01em;
+      transition:color 0.2s ease;
+    }
+    .nav-link::after {
+      content:''; position:absolute; bottom:-3px; left:0; width:0; height:1.5px;
+      background:#2ab4b4; transition:width 0.25s ease;
+    }
+    .nav-link:hover { color:#2ab4b4; }
+    .nav-link:hover::after { width:100%; }
+    .nav-link:focus-visible { outline:2px solid rgba(42,180,180,0.5); outline-offset:4px; border-radius:2px; }
+    .nav-dropdown { position:relative; }
+    .nav-dropdown-menu {
+      position:absolute; top:calc(100% + 10px); left:50%;
+      transform:translateX(-50%) translateY(-4px);
+      background:#fff; border-radius:14px; padding:6px; min-width:180px; z-index:100;
+      box-shadow:0 8px 32px rgba(42,180,180,0.14),0 2px 8px rgba(0,0,0,0.08);
+      border:1px solid rgba(42,180,180,0.12);
+      opacity:0; visibility:hidden;
+      transition:opacity 0.2s ease,visibility 0.2s ease,transform 0.2s cubic-bezier(0.34,1.2,0.64,1);
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu {
+      opacity:1; visibility:visible; transform:translateX(-50%) translateY(0);
+    }
+    .nav-dropdown-item {
+      display:flex; align-items:center; gap:8px; padding:9px 14px; border-radius:8px;
+      color:#4a6274; font-size:0.875rem; font-weight:500; text-decoration:none; white-space:nowrap;
+      transition:background 0.15s ease,color 0.15s ease;
+    }
+    .nav-dropdown-item:hover { background:rgba(42,180,180,0.07); color:#2ab4b4; }
+    .nav-dropdown-item.active-page { background:rgba(42,180,180,0.10); color:#1e9696; font-weight:600; }
+    .mobile-menu { transition:opacity 0.25s ease,transform 0.25s cubic-bezier(0.4,0,0.2,1); }
+    .mobile-menu.hidden { opacity:0; transform:translateY(-8px); pointer-events:none; }
+    .mobile-menu.open { opacity:1; transform:translateY(0); pointer-events:auto; }
+
+    /* ── Page intro strip ── */
+    .page-intro {
+      background: linear-gradient(160deg,#f0fbfb 0%,#e8f7f7 100%);
+      border-bottom:1px solid rgba(42,180,180,0.12);
+      padding:32px 24px 28px;
+      text-align:center;
+    }
+
+    /* ── Form design tokens ── */
+    :root {
+      --navy:      #152d4a;
+      --teal:      #00b4cc;
+      --teal-dark: #0091a8;
+      --teal-light:#e0f7fa;
+      --teal-mid:  #80d8e8;
+      --cream:     oklch(98% 0.006 210);
+      --white:     #ffffff;
+      --charcoal:  #1e3346;
+      --mid:       #4d6b80;
+      --muted:     #8aaabb;
+      --border:    #d0e4ec;
+      --error:     #c0392b;
+      --error-bg:  #fdf2f0;
+    }
+
+    body {
+      font-family:'DM Sans',system-ui,sans-serif;
+      background:var(--cream);
+      color:var(--charcoal);
+      min-height:100vh;
+      line-height:1.55;
+    }
+
+    /* ── Layout ── */
+    .outer { max-width:740px; margin:0 auto; padding:36px 20px 80px; }
+
+    /* ── Progress ── */
+    .progress-wrap { margin-bottom:32px; }
+    .progress-steps { display:flex; align-items:flex-start; position:relative; }
+    .progress-step { flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; position:relative; }
+    .step-connector { position:absolute; top:13px; left:50%; right:-50%; height:2px; background:var(--border); z-index:0; transition:background 0.4s; }
+    .step-connector.done { background:var(--teal); }
+    .step-dot { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; border:2px solid var(--border); background:var(--white); color:var(--muted); position:relative; z-index:1; transition:all 0.3s; }
+    .step-dot.active { border-color:var(--teal); background:var(--teal); color:white; box-shadow:0 0 0 4px var(--teal-light); }
+    .step-dot.done { border-color:var(--teal); background:var(--teal); color:white; }
+    .step-label { font-size:10.5px; font-weight:500; color:var(--muted); text-align:center; line-height:1.3; max-width:76px; transition:color 0.3s; }
+    .step-label.active { color:var(--teal-dark); }
+    .step-label.done { color:var(--charcoal); }
+
+    /* ── Card ── */
+    .card { background:var(--white); border-radius:14px; border:1px solid var(--border); box-shadow:0 2px 24px rgba(26,46,59,0.07); overflow:hidden; animation:fadeUp 0.3s ease; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+    .card-header { background:var(--teal-light); border-bottom:1.5px solid var(--teal-mid); padding:26px 36px 22px; display:flex; align-items:flex-end; justify-content:space-between; gap:16px; }
+    .section-num { font-size:10.5px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--teal-dark); margin-bottom:5px; }
+    .section-title { font-size:20px; font-weight:500; color:var(--navy); letter-spacing:-0.2px; }
+    .section-desc { font-size:13px; color:var(--mid); margin-top:3px; }
+    .card-body { padding:30px 36px; }
+
+    /* ── Fields ── */
+    .field-grid { display:grid; gap:18px; }
+    .field-grid.cols-2 { grid-template-columns:1fr 1fr; }
+    .field-grid.cols-3 { grid-template-columns:1fr 1fr 1fr; }
+    .span-2 { grid-column:span 2; }
+    .span-3 { grid-column:span 3; }
+    .field-group { display:flex; flex-direction:column; gap:5px; }
+    label { font-size:10.5px; font-weight:600; color:var(--mid); letter-spacing:0.8px; text-transform:uppercase; }
+    label .req { color:var(--teal); margin-left:1px; }
+    input[type="text"],input[type="email"],input[type="tel"],input[type="date"],select,textarea {
+      width:100%; padding:10px 13px;
+      border:1.5px solid var(--border); border-radius:8px;
+      font-family:'DM Sans',sans-serif; font-size:14px;
+      color:var(--navy); background:white;
+      transition:border-color 0.2s,box-shadow 0.2s;
+      outline:none; appearance:none; -webkit-appearance:none;
+    }
+    input:focus,select:focus,textarea:focus { border-color:var(--teal); box-shadow:0 0 0 3px var(--teal-light); }
+    input.err,select.err,textarea.err { border-color:var(--error); background:var(--error-bg); }
+    .err-msg { font-size:11px; color:var(--error); margin-top:2px; }
+    select {
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath stroke='%238fa8b5' stroke-width='1.5' fill='none' d='M1 1l4.5 4.5L10 1'/%3E%3C/svg%3E");
+      background-repeat:no-repeat; background-position:right 12px center; padding-right:32px; cursor:pointer;
+    }
+    textarea { resize:vertical; min-height:76px; line-height:1.55; }
+    .helper { font-size:11px; color:var(--muted); margin-top:2px; font-style:italic; }
+
+    /* ── Pills ── */
+    .radio-group,.check-group { display:flex; flex-wrap:wrap; gap:7px; margin-top:2px; }
+    .pill { display:flex; align-items:center; gap:6px; padding:7px 13px; border:1.5px solid var(--border); border-radius:7px; cursor:pointer; font-size:13px; color:var(--charcoal); background:white; transition:all 0.15s; user-select:none; }
+    .pill:hover { border-color:var(--teal-mid); background:var(--teal-light); }
+    .pill.sel { border-color:var(--teal); background:var(--teal-light); color:var(--teal-dark); font-weight:500; }
+    .pill input { display:none; }
+    .pill-radio { width:13px; height:13px; border-radius:50%; border:2px solid currentColor; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .pill.sel .pill-radio::after { content:''; width:5px; height:5px; border-radius:50%; background:var(--teal); display:block; }
+    .pill-check { width:13px; height:13px; border-radius:3px; border:2px solid currentColor; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:9px; line-height:1; }
+
+    /* ── Divider / subheading ── */
+    .divider { height:1px; background:var(--border); margin:22px 0; }
+    .sub-h { font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--navy); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+    .sub-h::after { content:''; flex:1; height:1px; background:var(--border); }
+
+    /* ── Alert box ── */
+    .alert-box { background:var(--teal-light); border:1px solid var(--teal-mid); border-left:3px solid var(--teal); border-radius:8px; padding:13px 16px; margin-bottom:16px; display:flex; gap:10px; align-items:flex-start; }
+    .alert-box svg { flex-shrink:0; margin-top:1px; color:var(--teal); }
+    .alert-box p { font-size:13px; color:var(--charcoal); line-height:1.55; }
+    .alert-box p strong { color:var(--navy); }
+
+    /* ── Consent ── */
+    .consent-block { border:1.5px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:14px; transition:border-color 0.2s; }
+    .consent-block.agreed { border-color:var(--teal); }
+    .consent-head { background:#f7fafa; padding:13px 18px; border-bottom:1px solid var(--border); font-size:13px; font-weight:600; color:var(--navy); }
+    .consent-body { padding:13px 18px; font-size:13px; color:var(--mid); line-height:1.6; }
+    .consent-footer { padding:12px 18px; background:#fbfdfd; border-top:1px solid var(--border); display:flex; align-items:center; gap:10px; cursor:pointer; }
+    .c-check { width:18px; height:18px; border-radius:4px; border:2px solid var(--border); background:white; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.15s; }
+    .c-check.on { background:var(--teal); border-color:var(--teal); }
+    .consent-footer span { font-size:13px; color:var(--charcoal); }
+
+    /* ── Signature ── */
+    .sig-wrap { border:1.5px solid var(--border); border-radius:10px; background:white; overflow:hidden; position:relative; }
+    .sig-wrap canvas { display:block; width:100%; height:150px; cursor:crosshair; touch-action:none; }
+    .sig-placeholder { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:13px; color:var(--muted); pointer-events:none; font-style:italic; display:flex; align-items:center; gap:6px; white-space:nowrap; }
+    .sig-clear { position:absolute; top:8px; right:8px; background:white; border:1px solid var(--border); border-radius:6px; padding:4px 10px; font-size:11.5px; color:var(--mid); cursor:pointer; font-family:'DM Sans',sans-serif; transition:all 0.15s; }
+    .sig-clear:hover { background:var(--error-bg); border-color:var(--error); color:var(--error); }
+
+    /* ── Form nav buttons ── */
+    .nav-wrap { display:flex; align-items:center; justify-content:space-between; margin-top:26px; }
+    .btn { padding:12px 26px; border-radius:9px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500; cursor:pointer; border:none; transition:all 0.2s; display:flex; align-items:center; gap:7px; }
+    .btn-ghost { background:white; color:var(--mid); border:1.5px solid var(--border); }
+    .btn-ghost:hover { background:var(--cream); color:var(--charcoal); }
+    .btn-primary { background:var(--teal); color:white; box-shadow:0 2px 14px rgba(0,180,204,0.28); }
+    .btn-primary:hover { background:var(--teal-dark); box-shadow:0 4px 20px rgba(0,180,204,0.38); transform:translateY(-1px); }
+    .btn-primary:active { transform:translateY(0); }
+
+    /* ── Success ── */
+    .success-card { background:white; border-radius:14px; border:1px solid var(--border); padding:64px 40px; text-align:center; animation:fadeUp 0.4s ease; box-shadow:0 2px 24px rgba(26,46,59,0.07); }
+    .success-icon { width:70px; height:70px; background:var(--teal-light); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 22px; }
+    .success-card h2 { font-size:24px; font-weight:500; color:var(--navy); margin-bottom:10px; }
+    .success-card p { font-size:15px; color:var(--mid); line-height:1.65; max-width:420px; margin:0 auto; }
+    .tag { display:inline-flex; align-items:center; gap:6px; background:var(--teal-light); color:var(--teal-dark); border-radius:20px; padding:6px 14px; font-size:12.5px; font-weight:500; margin-top:20px; }
+
+    /* ── Blood thinner warning ── */
+    .warn-flag { background:oklch(96% 0.03 60); border:1px solid oklch(85% 0.07 60); border-radius:6px; padding:10px 14px; font-size:12.5px; color:oklch(35% 0.08 60); margin-top:10px; display:flex; gap:8px; align-items:flex-start; }
+
+    /* ── Responsive ── */
+    @media (max-width:600px) {
+      .outer { padding:18px 12px 60px; }
+      .card-header,.card-body { padding:20px; }
+      .field-grid.cols-2,.field-grid.cols-3 { grid-template-columns:1fr; }
+      .span-2,.span-3 { grid-column:span 1; }
+      .step-label { display:none; }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- ═══ NAV ═══ -->
+  <header class="nav-glass sticky top-0 z-50">
+    <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded">
+        <img src="brand_assets/WisdomSurgery_Logo_Horizontal.png" alt="Wisdom Surgery Clinic" class="h-9 w-auto" />
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <div class="nav-dropdown">
+          <a href="index.html#journey" class="nav-link flex items-center gap-1">
+            Your Journey
+            <svg class="w-3 h-3 opacity-50" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="new-patient-registration.html" class="nav-dropdown-item active-page">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              New Patient Form
+            </a>
+            <a href="telehealth.html" class="nav-dropdown-item">
+              <svg class="w-3.5 h-3.5 opacity-40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+              Telehealth
+            </a>
+          </div>
+        </div>
+        <a href="index.html#services" class="nav-link">Services</a>
+        <a href="index.html#about" class="nav-link">About</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+        <a href="index.html#faq" class="nav-link">FAQ</a>
+      </div>
+
+      <div class="hidden md:flex items-center gap-3">
+        <a href="index.html#contact" class="nav-cta px-5 py-2.5 rounded-full text-sm font-semibold">Book Consultation</a>
+        <a href="payment.html" class="nav-cta-ghost px-4 py-2.5 rounded-full text-sm font-medium flex items-center gap-1.5 bg-white">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+          Pay Invoice
+        </a>
+      </div>
+
+      <button id="menu-toggle" class="md:hidden p-2 rounded-lg text-navy-700 hover:bg-teal-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400" aria-label="Open menu">
+        <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </nav>
+
+    <div id="mobile-menu" class="mobile-menu hidden md:hidden px-6 pb-5 pt-1 border-t border-teal-100">
+      <div class="flex flex-col gap-4">
+        <a href="index.html#journey" class="nav-link py-1" onclick="closeMobileMenu()">Your Journey</a>
+        <a href="new-patient-registration.html" class="nav-link py-1 pl-4" style="color:#1e9696;font-size:0.85rem" onclick="closeMobileMenu()">↳ New Patient Form</a>
+        <a href="index.html#services" class="nav-link py-1" onclick="closeMobileMenu()">Services</a>
+        <a href="index.html#about" class="nav-link py-1" onclick="closeMobileMenu()">About</a>
+        <a href="index.html#contact" class="nav-link py-1" onclick="closeMobileMenu()">Contact</a>
+        <a href="index.html#faq" class="nav-link py-1" onclick="closeMobileMenu()">FAQ</a>
+        <div class="flex flex-col gap-2 mt-1">
+          <a href="index.html#contact" class="nav-cta px-5 py-3 rounded-full text-sm font-semibold text-center" onclick="closeMobileMenu()">Book Consultation</a>
+          <a href="payment.html" class="nav-cta-ghost px-5 py-3 rounded-full text-sm font-medium text-center flex items-center justify-center gap-2 bg-white" onclick="closeMobileMenu()">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+            Pay Invoice
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ PAGE INTRO ═══ -->
+  <div class="page-intro">
+    <p class="text-teal-500 font-semibold text-xs tracking-widest uppercase mb-2">Wisdom Surgery Clinic</p>
+    <h1 class="font-display text-2xl md:text-3xl font-semibold text-navy-900" style="letter-spacing:-0.02em">New Patient Registration</h1>
+    <p class="text-navy-500 text-sm mt-2 max-w-md mx-auto" style="line-height:1.7">Complete this form before your first appointment to help us prepare for your visit.</p>
+  </div>
+
+  <!-- ═══ REACT FORM ═══ -->
+  <div class="outer" id="root"></div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer style="background:#091d38" class="py-8">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <img src="brand_assets/WisdomSurgery_Logo_Horizontal.png" alt="Wisdom Surgery Clinic" class="h-7 w-auto brightness-0 invert opacity-60" />
+      <div class="flex items-center gap-6">
+        <a href="index.html" class="text-xs opacity-40 hover:opacity-70 transition-opacity" style="color:#7aa0c6">Back to main site</a>
+        <a href="index.html#contact" class="text-xs opacity-40 hover:opacity-70 transition-opacity" style="color:#7aa0c6">Book Consultation</a>
+        <a href="payment.html" class="text-xs opacity-40 hover:opacity-70 transition-opacity" style="color:#7aa0c6">Pay Invoice</a>
+      </div>
+      <p class="text-xs opacity-30" style="color:#7aa0c6">© 2026 Wisdom Surgery Clinic.</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
+    let menuOpen = false;
+    toggle.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden', !menuOpen);
+      mobileMenu.classList.toggle('open', menuOpen);
+      iconOpen.classList.toggle('hidden', menuOpen);
+      iconClose.classList.toggle('hidden', !menuOpen);
+      toggle.setAttribute('aria-label', menuOpen ? 'Close menu' : 'Open menu');
+    });
+    function closeMobileMenu() {
+      menuOpen = false;
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('open');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+  </script>
+
+  <script type="text/babel">
+const { useState, useRef, useEffect } = React;
+
+function Field({ label, required, error, help, children, className = '' }) {
+  return (
+    <div className={`field-group ${className}`}>
+      {label && <label>{label}{required && <span className="req">*</span>}</label>}
+      {children}
+      {help && <div className="helper">{help}</div>}
+      {error && <div className="err-msg">{error}</div>}
+    </div>
+  );
+}
+
+function RadioGroup({ options, value, onChange, name }) {
+  return (
+    <div className="radio-group">
+      {options.map(opt => (
+        <label key={opt} className={`pill ${value === opt ? 'sel' : ''}`}>
+          <input type="radio" name={name} value={opt} checked={value === opt} onChange={() => onChange(opt)} />
+          <span className="pill-radio" />
+          {opt}
+        </label>
+      ))}
+    </div>
+  );
+}
+
+function CheckGroup({ options, value = [], onChange }) {
+  const toggle = o => value.includes(o) ? onChange(value.filter(v => v !== o)) : onChange([...value, o]);
+  return (
+    <div className="check-group">
+      {options.map(opt => (
+        <label key={opt} className={`pill ${value.includes(opt) ? 'sel' : ''}`} onClick={() => toggle(opt)}>
+          <span className="pill-check">{value.includes(opt) ? '✓' : ''}</span>
+          {opt}
+        </label>
+      ))}
+    </div>
+  );
+}
+
+function Divider({ label }) {
+  return <div style={{margin:'24px 0 18px'}}><div className="sub-h">{label}</div></div>;
+}
+
+function ConsentItem({ title, body, checked, onChange }) {
+  return (
+    <div className={`consent-block ${checked ? 'agreed' : ''}`}>
+      <div className="consent-head">{title}</div>
+      <div className="consent-body">{body}</div>
+      <div className="consent-footer" onClick={() => onChange(!checked)}>
+        <div className={`c-check ${checked ? 'on' : ''}`}>
+          {checked && <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+        </div>
+        <span>I have read and agree to the above</span>
+      </div>
+    </div>
+  );
+}
+
+function SignaturePad({ onSign, isEmpty, setEmpty }) {
+  const canvasRef = useRef(null);
+  const drawing = useRef(false);
+  const lastPos = useRef(null);
+
+  const getPos = (e, canvas) => {
+    const rect = canvas.getBoundingClientRect();
+    const sx = canvas.width / rect.width, sy = canvas.height / rect.height;
+    const cx = e.touches ? e.touches[0].clientX : e.clientX;
+    const cy = e.touches ? e.touches[0].clientY : e.clientY;
+    return { x: (cx - rect.left) * sx, y: (cy - rect.top) * sy };
+  };
+
+  const start = e => { e.preventDefault(); drawing.current = true; lastPos.current = getPos(e, canvasRef.current); };
+  const move = e => {
+    e.preventDefault();
+    if (!drawing.current) return;
+    const canvas = canvasRef.current, ctx = canvas.getContext('2d');
+    const pos = getPos(e, canvas);
+    ctx.beginPath(); ctx.moveTo(lastPos.current.x, lastPos.current.y);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.strokeStyle = '#1a2e3b'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.stroke(); lastPos.current = pos;
+    setEmpty(false); onSign(canvas.toDataURL());
+  };
+  const end = () => { drawing.current = false; };
+  const clear = () => {
+    const canvas = canvasRef.current;
+    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+    setEmpty(true); onSign(null);
+  };
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    canvas.width = (canvas.offsetWidth || 600) * (window.devicePixelRatio || 1);
+    canvas.height = 300;
+  }, []);
+
+  return (
+    <div className="sig-wrap">
+      <canvas ref={canvasRef}
+        onMouseDown={start} onMouseMove={move} onMouseUp={end} onMouseLeave={end}
+        onTouchStart={start} onTouchMove={move} onTouchEnd={end} />
+      {isEmpty && (
+        <div className="sig-placeholder">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M15.232 5.232l3.536 3.536M9 13l6.5-6.5a2.121 2.121 0 010 3L9 16H6v-3z"/></svg>
+          Sign here using your mouse or finger
+        </div>
+      )}
+      {!isEmpty && <button className="sig-clear" onClick={clear}>Clear</button>}
+    </div>
+  );
+}
+
+/* ── Step 1 — Patient Personal Details ── */
+function Step1({ d, set, errors }) {
+  const titles = ['Mr','Mrs','Ms','Miss','Dr','Mx','Other'];
+  const genders = ['Male','Female','Non-binary','Prefer not to say'];
+  const marital = ['Single','Married','De facto','Separated','Divorced','Widowed'];
+  const indigenous = ['No','Yes — Aboriginal','Yes — Torres Strait Islander','Yes — Both'];
+
+  return <>
+    <div className="field-grid">
+      <div className="field-group span-2">
+        <label>Title<span className="req">*</span></label>
+        <RadioGroup options={titles} value={d.title} onChange={v => set('title', v)} name="title" />
+        {errors.title && <div className="err-msg">{errors.title}</div>}
+      </div>
+      <Field label="Surname" required error={errors.surname}>
+        <input type="text" value={d.surname} onChange={e => set('surname', e.target.value)} className={errors.surname ? 'err' : ''} placeholder="Family name" />
+      </Field>
+      <Field label="Given Names" required error={errors.givenNames}>
+        <input type="text" value={d.givenNames} onChange={e => set('givenNames', e.target.value)} className={errors.givenNames ? 'err' : ''} placeholder="All given names" />
+      </Field>
+      <Field label="Preferred Name" help="What would you like us to call you?">
+        <input type="text" value={d.preferredName} onChange={e => set('preferredName', e.target.value)} placeholder="Preferred name" />
+      </Field>
+      <Field label="Date of Birth" required error={errors.dob}>
+        <input type="date" value={d.dob} onChange={e => set('dob', e.target.value)} className={errors.dob ? 'err' : ''} />
+      </Field>
+      <Field label="Country of Birth">
+        <input type="text" value={d.countryBirth} onChange={e => set('countryBirth', e.target.value)} placeholder="e.g. Australia" />
+      </Field>
+      <div className="field-group">
+        <label>Gender</label>
+        <RadioGroup options={genders} value={d.gender} onChange={v => set('gender', v)} name="gender" />
+      </div>
+    </div>
+
+    <Divider label="Contact Details" />
+
+    <div className="field-grid cols-2">
+      <div className="field-group span-2">
+        <Field label="Residential Address" required error={errors.address}>
+          <input type="text" value={d.address} onChange={e => set('address', e.target.value)} className={errors.address ? 'err' : ''} placeholder="Street address" />
+        </Field>
+      </div>
+      <Field label="Suburb" required error={errors.suburb}>
+        <input type="text" value={d.suburb} onChange={e => set('suburb', e.target.value)} className={errors.suburb ? 'err' : ''} placeholder="Suburb" />
+      </Field>
+      <div className="field-grid cols-2">
+        <Field label="State">
+          <select value={d.state} onChange={e => set('state', e.target.value)}>
+            <option value="">Select</option>
+            {['NSW','VIC','QLD','SA','WA','TAS','ACT','NT'].map(s => <option key={s}>{s}</option>)}
+          </select>
+        </Field>
+        <Field label="Postcode" required error={errors.postcode}>
+          <input type="text" maxLength="4" value={d.postcode} onChange={e => set('postcode', e.target.value)} className={errors.postcode ? 'err' : ''} placeholder="0000" />
+        </Field>
+      </div>
+      <div className="field-group span-2">
+        <Field label="Postal Address" help="If different from above — leave blank if the same">
+          <input type="text" value={d.postalAddress} onChange={e => set('postalAddress', e.target.value)} placeholder="Postal address (if different)" />
+        </Field>
+      </div>
+      <Field label="Mobile" required error={errors.mobile}>
+        <input type="tel" value={d.mobile} onChange={e => set('mobile', e.target.value)} className={errors.mobile ? 'err' : ''} placeholder="04XX XXX XXX" />
+      </Field>
+      <Field label="Home / Work Phone">
+        <input type="tel" value={d.homePhone} onChange={e => set('homePhone', e.target.value)} placeholder="(0X) XXXX XXXX" />
+      </Field>
+      <div className="field-group span-2">
+        <Field label="Email Address" required error={errors.email}>
+          <input type="email" value={d.email} onChange={e => set('email', e.target.value)} className={errors.email ? 'err' : ''} placeholder="your@email.com" />
+        </Field>
+      </div>
+    </div>
+
+    <Divider label="Demographics" />
+
+    <div className="field-grid cols-2">
+      <Field label="Occupation">
+        <input type="text" value={d.occupation} onChange={e => set('occupation', e.target.value)} placeholder="Your occupation" />
+      </Field>
+      <Field label="Language Spoken at Home">
+        <input type="text" value={d.language} onChange={e => set('language', e.target.value)} placeholder="e.g. English, Mandarin" />
+      </Field>
+      <div className="field-group span-2">
+        <label>Interpreter Required?</label>
+        <RadioGroup options={['No','Yes']} value={d.interpreter} onChange={v => set('interpreter', v)} name="interp" />
+      </div>
+      <div className="field-group span-2">
+        <label>Marital Status</label>
+        <RadioGroup options={marital} value={d.marital} onChange={v => set('marital', v)} name="marital" />
+      </div>
+      <div className="field-group span-2">
+        <label>Are you of Aboriginal or Torres Strait Islander origin?</label>
+        <RadioGroup options={indigenous} value={d.indigenous} onChange={v => set('indigenous', v)} name="indigenous" />
+      </div>
+    </div>
+  </>;
+}
+
+/* ── Step 2 — Medicare & Health Funding ── */
+function Step2({ d, set }) {
+  return <>
+    <Divider label="Medicare" />
+    <div className="field-grid cols-2">
+      <Field label="Medicare Card Number">
+        <input type="text" value={d.medicareNum} onChange={e => set('medicareNum', e.target.value)} placeholder="XXXX XXXXX X" />
+      </Field>
+      <div className="field-grid cols-2">
+        <Field label="Reference No." help="Individual number on card">
+          <input type="text" maxLength="1" value={d.medicareRef} onChange={e => set('medicareRef', e.target.value)} placeholder="1" />
+        </Field>
+        <Field label="Expiry">
+          <input type="text" value={d.medicareExpiry} onChange={e => set('medicareExpiry', e.target.value)} placeholder="MM/YYYY" />
+        </Field>
+      </div>
+    </div>
+
+    <Divider label="Pension / Health Care Card" />
+    <div className="field-grid cols-2">
+      <Field label="Card Number">
+        <input type="text" value={d.pensionNum} onChange={e => set('pensionNum', e.target.value)} placeholder="Card number" />
+      </Field>
+      <Field label="Expiry Date">
+        <input type="text" value={d.pensionExpiry} onChange={e => set('pensionExpiry', e.target.value)} placeholder="DD/MM/YYYY" />
+      </Field>
+    </div>
+
+    <Divider label="DVA (Defence Veterans' Affairs)" />
+    <div className="field-grid cols-2">
+      <Field label="DVA Card Number">
+        <input type="text" value={d.dvaNum} onChange={e => set('dvaNum', e.target.value)} placeholder="DVA card number" />
+      </Field>
+      <Field label="Card Type">
+        <select value={d.dvaType} onChange={e => set('dvaType', e.target.value)}>
+          <option value="">Select type</option>
+          <option>Gold</option><option>White</option><option>Orange</option><option>N/A</option>
+        </select>
+      </Field>
+    </div>
+
+    <Divider label="Private Health Insurance" />
+    <div className="field-grid cols-2">
+      <Field label="Fund Name">
+        <input type="text" value={d.fundName} onChange={e => set('fundName', e.target.value)} placeholder="e.g. Medibank, Bupa, HCF" />
+      </Field>
+      <Field label="Membership Number">
+        <input type="text" value={d.fundNum} onChange={e => set('fundNum', e.target.value)} placeholder="Membership number" />
+      </Field>
+      <Field label="Policy / Group Number">
+        <input type="text" value={d.fundPolicy} onChange={e => set('fundPolicy', e.target.value)} placeholder="Policy number" />
+      </Field>
+      <Field label="Cover Type">
+        <select value={d.fundCover} onChange={e => set('fundCover', e.target.value)}>
+          <option value="">Select</option>
+          <option>Hospital only</option>
+          <option>Extras only</option>
+          <option>Hospital &amp; Extras</option>
+        </select>
+      </Field>
+    </div>
+  </>;
+}
+
+/* ── Step 3 — Emergency Contact & Referral ── */
+function Step3({ d, set, errors }) {
+  const refs = ['Spouse / Partner','Parent','Sibling','Child','Friend','Guardian','Carer','Other'];
+  return <>
+    <Divider label="Emergency Contact & Next of Kin" />
+    <div className="field-grid cols-2">
+      <Field label="Contact Name" required error={errors.ecName}>
+        <input type="text" value={d.ecName} onChange={e => set('ecName', e.target.value)} className={errors.ecName ? 'err' : ''} placeholder="Full name" />
+      </Field>
+      <Field label="Relationship" required error={errors.ecRel}>
+        <select value={d.ecRel} onChange={e => set('ecRel', e.target.value)} className={errors.ecRel ? 'err' : ''}>
+          <option value="">Select relationship</option>
+          {refs.map(r => <option key={r}>{r}</option>)}
+        </select>
+      </Field>
+      <Field label="Mobile" required error={errors.ecMobile}>
+        <input type="tel" value={d.ecMobile} onChange={e => set('ecMobile', e.target.value)} className={errors.ecMobile ? 'err' : ''} placeholder="04XX XXX XXX" />
+      </Field>
+      <Field label="Alternative Phone">
+        <input type="tel" value={d.ecPhone} onChange={e => set('ecPhone', e.target.value)} placeholder="Home or work number" />
+      </Field>
+    </div>
+
+    <Divider label="Referring Practitioner" />
+    <div className="alert-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>As a specialist practice, we generally require a referral. <strong>If your referral has already been sent to us, please disregard this section.</strong> If you still need to arrange a referral, please provide your referring practitioner's details below.</p>
+    </div>
+    <div className="field-grid cols-2">
+      <Field label="Referring Doctor / Dentist Name">
+        <input type="text" value={d.refName} onChange={e => set('refName', e.target.value)} placeholder="Dr / dentist full name" />
+      </Field>
+      <Field label="Practice / Clinic Name">
+        <input type="text" value={d.refPractice} onChange={e => set('refPractice', e.target.value)} placeholder="Practice or clinic" />
+      </Field>
+      <Field label="Referrer Phone">
+        <input type="tel" value={d.refPhone} onChange={e => set('refPhone', e.target.value)} placeholder="(0X) XXXX XXXX" />
+      </Field>
+      <Field label="Referrer Fax / Email">
+        <input type="text" value={d.refFax} onChange={e => set('refFax', e.target.value)} placeholder="Fax or email" />
+      </Field>
+      <div className="field-group span-2">
+        <Field label="Reason for Referral / Chief Complaint" help="What is bringing you to our clinic today?">
+          <textarea value={d.reasonVisit} onChange={e => set('reasonVisit', e.target.value)} rows={3} placeholder="e.g. Wisdom tooth pain, jaw surgery consult, implant assessment…" />
+        </Field>
+      </div>
+    </div>
+  </>;
+}
+
+/* ── Step 4 — Health History ── */
+function Step4({ d, set }) {
+  const conditions = [
+    'Diabetes','Hypertension','Heart Disease / Angina','Heart Failure',
+    'Pacemaker / Defibrillator','Stroke / TIA','Epilepsy','Asthma / COPD',
+    'Bleeding / Clotting Disorder','Thyroid Condition','Arthritis',
+    'Osteoporosis / Osteopenia','Kidney Disease','Liver Disease',
+    'HIV / AIDS','Hepatitis B or C','Cancer (current or past)',
+    'Head / Neck Radiation','Bisphosphonate / Denosumab use',
+    'Immunosuppression','Depression / Anxiety','Sleep Apnoea','GORD / Reflux'
+  ];
+
+  return <>
+    <Divider label="General Health" />
+    <div className="field-grid">
+      <Field label="Usual GP / Medical Centre" help="Name and practice">
+        <input type="text" value={d.gp} onChange={e => set('gp', e.target.value)} placeholder="Dr Smith — City Medical Centre" />
+      </Field>
+      <div className="field-group">
+        <label>Allergies</label>
+        <RadioGroup options={['No Known Allergies','Yes — I have allergies']} value={d.allergyStatus} onChange={v => set('allergyStatus', v)} name="allergy" />
+      </div>
+      {d.allergyStatus === 'Yes — I have allergies' && (
+        <Field label="Please list all allergies and reactions">
+          <textarea value={d.allergyList} onChange={e => set('allergyList', e.target.value)} rows={3} placeholder="e.g. Penicillin — rash; Latex — swelling; Aspirin — GI upset…" />
+        </Field>
+      )}
+      <Field label="Current Medications" help="Include supplements, vitamins and over-the-counter drugs">
+        <textarea value={d.medications} onChange={e => set('medications', e.target.value)} rows={4} placeholder="List all medications with doses and frequency…" />
+      </Field>
+      <div className="field-group">
+        <label>Are you taking any of the following? <span style={{fontWeight:400,textTransform:'none',fontSize:'11px',color:'var(--muted)'}}>select all that apply</span></label>
+        <CheckGroup
+          options={['Warfarin','Aspirin (daily)','Clopidogrel (Plavix)','Rivaroxaban / Apixaban','Other blood thinners / anticoagulants','Steroids (long-term)']}
+          value={d.bloodThinners} onChange={v => set('bloodThinners', v)}
+        />
+        {d.bloodThinners && d.bloodThinners.length > 0 && (
+          <div className="warn-flag">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Please inform reception — blood thinner management may be required before procedures.
+          </div>
+        )}
+      </div>
+    </div>
+
+    <Divider label="Medical History" />
+    <div className="field-grid">
+      <div className="field-group">
+        <label>Past Medical Conditions <span style={{fontWeight:400,textTransform:'none',fontSize:'11px',color:'var(--muted)'}}>select all that apply</span></label>
+        <CheckGroup options={conditions} value={d.conditions} onChange={v => set('conditions', v)} />
+      </div>
+      <Field label="Other medical history, surgeries or hospitalisations">
+        <textarea value={d.medHistory} onChange={e => set('medHistory', e.target.value)} rows={3} placeholder="Any other relevant conditions, previous surgeries, hospitalisations…" />
+      </Field>
+    </div>
+
+    <Divider label="Anaesthetic & Surgical History" />
+    <div className="field-grid cols-2">
+      <div className="field-group">
+        <label>Previous anaesthetic?</label>
+        <RadioGroup options={['No','Yes']} value={d.prevAnaes} onChange={v => set('prevAnaes', v)} name="prevAnaes" />
+      </div>
+      <div className="field-group">
+        <label>Any adverse anaesthetic reactions?</label>
+        <RadioGroup options={['No','Yes','Unsure']} value={d.anaesReaction} onChange={v => set('anaesReaction', v)} name="anaesReaction" />
+      </div>
+      {(d.anaesReaction === 'Yes' || d.anaesReaction === 'Unsure') && (
+        <div className="field-group span-2">
+          <Field label="Please describe reaction">
+            <textarea value={d.anaesReactionDetail} onChange={e => set('anaesReactionDetail', e.target.value)} rows={2} placeholder="Describe the reaction and when it occurred…" />
+          </Field>
+        </div>
+      )}
+      <div className="field-group span-2">
+        <label>Previous oral / jaw surgery?</label>
+        <RadioGroup options={['No','Yes']} value={d.prevOralSurg} onChange={v => set('prevOralSurg', v)} name="prevOralSurg" />
+      </div>
+      {d.prevOralSurg === 'Yes' && (
+        <div className="field-group span-2">
+          <Field label="Details">
+            <textarea value={d.prevOralSurgDetail} onChange={e => set('prevOralSurgDetail', e.target.value)} rows={2} placeholder="Type of procedure, approximate date, where performed…" />
+          </Field>
+        </div>
+      )}
+    </div>
+
+    <Divider label="Lifestyle" />
+    <div className="field-grid cols-2">
+      <div className="field-group">
+        <label>Smoking / Tobacco use</label>
+        <RadioGroup options={['Non-smoker','Current smoker','Ex-smoker']} value={d.smoker} onChange={v => set('smoker', v)} name="smoker" />
+      </div>
+      <div className="field-group">
+        <label>Alcohol use</label>
+        <RadioGroup options={['None','Occasional','Moderate (≤14 std drinks/wk)','Heavy (>14)']} value={d.alcohol} onChange={v => set('alcohol', v)} name="alcohol" />
+      </div>
+      <div className="field-group span-2">
+        <label>Pregnancy / Breastfeeding (if applicable)</label>
+        <RadioGroup options={['Not applicable','Not pregnant / breastfeeding','Pregnant','Breastfeeding','Possibly pregnant']} value={d.pregnancy} onChange={v => set('pregnancy', v)} name="pregnancy" />
+      </div>
+    </div>
+  </>;
+}
+
+/* ── Step 5 — Consent & Signature ── */
+function Step5({ d, set, sigData, setSigData, sigEmpty, setSigEmpty, errors }) {
+  return <>
+    <ConsentItem
+      title="Privacy Policy & Information Collection"
+      body="I consent to the collection, use and disclosure of my personal health information for the purpose of providing medical and surgical services, processing billing (including Medicare and DVA), and sending appointment reminders by SMS or email. Information will be handled in accordance with the Privacy Act 1988 (Cth) and the Australian Privacy Principles."
+      checked={d.consentPrivacy}
+      onChange={v => set('consentPrivacy', v)}
+    />
+    <ConsentItem
+      title="My Health Record"
+      body="I understand that this practice may upload documents and clinical information to my My Health Record (formerly PCEHR), as permitted under the My Health Records Act 2012. I understand I may opt out at any time by contacting the Australian Digital Health Agency."
+      checked={d.consentMHR}
+      onChange={v => set('consentMHR', v)}
+    />
+    <ConsentItem
+      title="Communication Consent"
+      body="I consent to receiving appointment reminders, recalls, and health information from Wisdom Surgery Clinic via SMS and/or email to the contact details provided. I understand I may opt out at any time."
+      checked={d.consentComms}
+      onChange={v => set('consentComms', v)}
+    />
+    <ConsentItem
+      title="Accuracy of Information"
+      body="I certify that the information provided in this form is accurate and complete to the best of my knowledge. I understand it is my ongoing responsibility to inform the practice of any changes to my health, medications, personal, or insurance details prior to future appointments."
+      checked={d.consentAccuracy}
+      onChange={v => set('consentAccuracy', v)}
+    />
+    {errors.consent && <div className="err-msg" style={{marginBottom:14}}>{errors.consent}</div>}
+    <div className="divider" />
+    <div className="field-grid cols-2" style={{marginBottom:18}}>
+      <Field label="Patient Full Name (print)" required error={errors.sigName}>
+        <input type="text" value={d.sigName} onChange={e => set('sigName', e.target.value)} className={errors.sigName ? 'err' : ''} placeholder="Print full legal name" />
+      </Field>
+      <Field label="Date">
+        <input type="text" value={new Date().toLocaleDateString('en-AU')} readOnly style={{background:'var(--cream)',color:'var(--mid)',cursor:'default'}} />
+      </Field>
+    </div>
+    <Field label="Signature" required error={errors.sig}>
+      <div style={{marginTop:4}}>
+        <SignaturePad onSign={setSigData} isEmpty={sigEmpty} setEmpty={setSigEmpty} />
+      </div>
+    </Field>
+  </>;
+}
+
+/* ── Step config ── */
+const STEPS = [
+  { label: 'Personal\nDetails',     icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z' },
+  { label: 'Medicare\n& Funding',   icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z' },
+  { label: 'Emergency\n& Referral', icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75' },
+  { label: 'Health\nHistory',       icon: 'M22 12h-4l-3 9L9 3l-3 9H2' },
+  { label: 'Consent\n& Sign',       icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
+];
+
+const HEADERS = [
+  ['01 / 05','Patient Personal Details','Your current contact and demographic information.'],
+  ['02 / 05','Medicare & Health Funding','Help us process your billing accurately.'],
+  ['03 / 05','Emergency Contact & Referral','Who to contact in an emergency, and your referring practitioner.'],
+  ['04 / 05','Health History','Your medical background helps us provide the safest care.'],
+  ['05 / 05','Consent & Signature','Please review and sign the following consent items.'],
+];
+
+/* ── Main App ── */
+function App() {
+  const [step, setStep] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [sigData, setSigData] = useState(null);
+  const [sigEmpty, setSigEmpty] = useState(true);
+
+  const [s1, setS1] = useState({ title:'',surname:'',givenNames:'',preferredName:'',dob:'',countryBirth:'',gender:'',address:'',suburb:'',state:'',postcode:'',postalAddress:'',mobile:'',homePhone:'',email:'',occupation:'',language:'',interpreter:'',marital:'',indigenous:'' });
+  const [s2, setS2] = useState({ medicareNum:'',medicareRef:'',medicareExpiry:'',pensionNum:'',pensionExpiry:'',dvaNum:'',dvaType:'',fundName:'',fundNum:'',fundPolicy:'',fundCover:'' });
+  const [s3, setS3] = useState({ ecName:'',ecRel:'',ecMobile:'',ecPhone:'',refName:'',refPractice:'',refPhone:'',refFax:'',reasonVisit:'' });
+  const [s4, setS4] = useState({ gp:'',allergyStatus:'No Known Allergies',allergyList:'',medications:'',bloodThinners:[],conditions:[],medHistory:'',prevAnaes:'',anaesReaction:'',anaesReactionDetail:'',prevOralSurg:'',prevOralSurgDetail:'',smoker:'',alcohol:'',pregnancy:'' });
+  const [s5, setS5] = useState({ consentPrivacy:false,consentMHR:false,consentComms:false,consentAccuracy:false,sigName:'' });
+
+  const setters = [
+    (k,v) => setS1(p => ({...p,[k]:v})),
+    (k,v) => setS2(p => ({...p,[k]:v})),
+    (k,v) => setS3(p => ({...p,[k]:v})),
+    (k,v) => setS4(p => ({...p,[k]:v})),
+    (k,v) => setS5(p => ({...p,[k]:v})),
+  ];
+
+  const validate = () => {
+    const e = {};
+    if (step === 0) {
+      if (!s1.title) e.title = 'Please select a title';
+      if (!s1.surname.trim()) e.surname = 'Surname is required';
+      if (!s1.givenNames.trim()) e.givenNames = 'Given name(s) required';
+      if (!s1.dob) e.dob = 'Date of birth required';
+      if (!s1.address.trim()) e.address = 'Address required';
+      if (!s1.suburb.trim()) e.suburb = 'Suburb required';
+      if (!s1.postcode.trim()) e.postcode = 'Postcode required';
+      if (!s1.mobile.trim()) e.mobile = 'Mobile number required';
+      if (!s1.email.trim()) e.email = 'Email required';
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s1.email)) e.email = 'Please enter a valid email';
+    }
+    if (step === 2) {
+      if (!s3.ecName.trim()) e.ecName = 'Contact name required';
+      if (!s3.ecRel) e.ecRel = 'Relationship required';
+      if (!s3.ecMobile.trim()) e.ecMobile = 'Mobile number required';
+    }
+    if (step === 4) {
+      if (!s5.consentPrivacy || !s5.consentMHR || !s5.consentComms || !s5.consentAccuracy)
+        e.consent = 'Please agree to all consent items above to proceed.';
+      if (!s5.sigName.trim()) e.sigName = 'Please print your full name';
+      if (sigEmpty) e.sig = 'Signature is required';
+    }
+    return e;
+  };
+
+  const next = () => {
+    const e = validate();
+    if (Object.keys(e).length) { setErrors(e); window.scrollTo({top:0,behavior:'smooth'}); return; }
+    setErrors({});
+    if (step < 4) { setStep(s => s + 1); window.scrollTo({top:0,behavior:'smooth'}); }
+    else setSubmitted(true);
+  };
+
+  const back = () => { setErrors({}); setStep(s => s - 1); window.scrollTo({top:0,behavior:'smooth'}); };
+
+  if (submitted) return (
+    <div className="success-card">
+      <div className="success-icon">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#18B5B5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20 6L9 17l-5-5"/>
+        </svg>
+      </div>
+      <h2>Registration Complete</h2>
+      <p>Thank you{s1.preferredName ? `, ${s1.preferredName}` : s1.givenNames ? `, ${s1.givenNames.split(' ')[0]}` : ''}. Your new patient registration has been received. Our team will be in touch shortly to confirm your details.</p>
+      <div className="tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Confirmation will be sent to {s1.email}
+      </div>
+      <div style={{marginTop:28}}>
+        <a href="index.html" style={{color:'var(--teal-dark)',fontSize:'13px',fontWeight:500,textDecoration:'none'}}>← Return to Wisdom Surgery Clinic</a>
+      </div>
+    </div>
+  );
+
+  const stepViews = [
+    <Step1 d={s1} set={setters[0]} errors={errors} />,
+    <Step2 d={s2} set={setters[1]} errors={errors} />,
+    <Step3 d={s3} set={setters[2]} errors={errors} />,
+    <Step4 d={s4} set={setters[3]} errors={errors} />,
+    <Step5 d={s5} set={setters[4]} sigData={sigData} setSigData={setSigData} sigEmpty={sigEmpty} setSigEmpty={setSigEmpty} errors={errors} />,
+  ];
+
+  const [num, title, desc] = HEADERS[step];
+
+  return <>
+    <div className="progress-wrap">
+      <div className="progress-steps">
+        {STEPS.map((s, i) => (
+          <div key={i} className="progress-step" onClick={() => { setErrors({}); setStep(i); window.scrollTo({top:0,behavior:'smooth'}); }} style={{cursor:'pointer'}}>
+            {i < STEPS.length - 1 && <div className={`step-connector ${i < step ? 'done' : ''}`} />}
+            <div className={`step-dot ${i === step ? 'active' : i < step ? 'done' : ''}`}>
+              {i < step
+                ? <svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5l3 3 6-7" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                : i + 1}
+            </div>
+            <div className={`step-label ${i === step ? 'active' : i < step ? 'done' : ''}`}>
+              {s.label.split('\n').map((l,j) => <span key={j} style={{display:'block'}}>{l}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div className="card" key={step}>
+      <div className="card-header">
+        <div className="card-header-text">
+          <div className="section-num">{num}</div>
+          <div className="section-title">{title}</div>
+          <div className="section-desc">{desc}</div>
+        </div>
+        <img src="brand_assets/WisdomSurgery_Logo_Circle.PNG" alt="" style={{height:54,width:54,objectFit:'contain',flexShrink:0,opacity:0.92}} />
+      </div>
+      <div className="card-body">
+        {stepViews[step]}
+      </div>
+    </div>
+
+    <div className="nav-wrap">
+      {step > 0
+        ? <button className="btn btn-ghost" onClick={back}>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Back
+          </button>
+        : <div />}
+      <button className="btn btn-primary" onClick={next}>
+        {step < 4
+          ? <>Continue <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></>
+          : <>Submit Registration <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M20 6L9 17l-5-5"/></svg></>}
+      </button>
+    </div>
+  </>;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
