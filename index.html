@@ -204,9 +204,6 @@
           <button id="banner-expand-btn" onclick="expandBanner()" class="text-teal-600 text-xs font-semibold hover:text-teal-700 transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded">
             Read more →
           </button>
-          <button onclick="dismissBanner()" aria-label="Dismiss" class="w-6 h-6 flex items-center justify-center rounded-full text-navy-400 hover:text-navy-600 hover:bg-black/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-          </button>
         </div>
       </div>
 
@@ -226,9 +223,6 @@
             </div>
           </div>
           <div class="flex flex-col items-end gap-2 flex-shrink-0">
-            <button onclick="dismissBanner()" aria-label="Dismiss" class="w-7 h-7 flex items-center justify-center rounded-full text-navy-400 hover:text-navy-600 hover:bg-black/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
             <button onclick="collapseBanner()" class="text-teal-600 text-xs font-semibold hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded">
               ↑ Collapse
             </button>
@@ -240,20 +234,6 @@
   </div>
 
   <script>
-    (function() {
-      if (localStorage.getItem('wsc-banner-dismissed') === '1') {
-        var b = document.getElementById('announcement-banner');
-        if (b) b.style.display = 'none';
-      }
-    })();
-    function dismissBanner() {
-      localStorage.setItem('wsc-banner-dismissed', '1');
-      var b = document.getElementById('announcement-banner');
-      b.style.transition = 'opacity 0.3s ease, max-height 0.4s ease';
-      b.style.opacity = '0';
-      b.style.overflow = 'hidden';
-      setTimeout(function() { b.style.display = 'none'; }, 350);
-    }
     function expandBanner() {
       document.getElementById('banner-collapsed').classList.add('hidden');
       document.getElementById('banner-expanded').classList.remove('hidden');
