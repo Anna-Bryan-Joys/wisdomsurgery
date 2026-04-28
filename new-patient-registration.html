@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -415,6 +415,58 @@ body { font-family:'DM Sans',system-ui,sans-serif; background:#f8fdfd; color:#1a
     </div>
   </div>
 
+  <div class="policy-section" id="ps-photography">
+    <div class="policy-section-head" onclick="toggleSection('ps-photography')">
+      <h3>Clinical Photography &amp; Imaging Consent</h3>
+      <span class="ps-icon">+</span>
+    </div>
+    <div class="policy-section-body">
+      <div style="padding-top:16px">
+        <p class="policy-p">As part of your care at Wisdom Surgery Clinic, clinical photographs and imaging may be taken before, during, and after your treatment. This is standard practice in oral and maxillofacial surgery and forms an important part of your clinical record.</p>
+        <div class="policy-h4">Why we take clinical photos</div>
+        <ul class="policy-ul">
+          <li><strong>Treatment planning</strong> — to assess your condition and plan your procedure</li>
+          <li><strong>Clinical records</strong> — to document your treatment progress and outcomes</li>
+          <li><strong>Referral correspondence</strong> — to communicate with your referring practitioner or other treating clinicians</li>
+          <li><strong>Education and teaching</strong> — to train dental and medical students and practitioners (de-identified)</li>
+          <li><strong>Research</strong> — for peer-reviewed clinical research (de-identified and with ethics approval)</li>
+          <li><strong>Marketing and practice promotion</strong> — with your explicit separate consent only</li>
+        </ul>
+        <div class="policy-h4">Your consent</div>
+        <p class="policy-p">Clinical photographs taken for the purposes of your treatment and records are collected as part of your care and are covered by your general consent to treatment. You will be asked to provide separate, specific written consent before any images are used for education, research, or marketing purposes.</p>
+        <p class="policy-p">You have the right to decline photography for any purpose beyond your clinical record. Declining will not affect the quality of care you receive, though in some cases it may limit certain treatment planning options — Dr Raymond will discuss this with you if relevant.</p>
+        <div class="policy-h4">Storage and privacy</div>
+        <p class="policy-p">Clinical images are stored securely within your patient record and handled in accordance with our Privacy Policy and the Australian Privacy Principles. Images used for education or research are de-identified before use. Marketing images are only used with your signed written authorisation and will not be published or shared beyond the agreed scope.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="policy-section" id="ps-afterhours">
+    <div class="policy-section-head" onclick="toggleSection('ps-afterhours')">
+      <h3>After-Hours &amp; Emergency Care</h3>
+      <span class="ps-icon">+</span>
+    </div>
+    <div class="policy-section-body">
+      <div style="padding-top:16px">
+        <p class="policy-p">Wisdom Surgery Clinic is committed to supporting you through your recovery. We provide clear after-hours guidance for all surgical patients at the time of your procedure.</p>
+        <div class="policy-h4">After your procedure</div>
+        <p class="policy-p">Written post-operative care instructions will be provided to you before you leave following any surgical procedure. Please read these carefully — they include information about pain management, wound care, diet, activity restrictions, and what to expect during your recovery.</p>
+        <div class="policy-h4">When to seek urgent care</div>
+        <p class="policy-p">Please go directly to your nearest hospital emergency department or call 000 if you experience any of the following after a procedure:</p>
+        <ul class="policy-ul">
+          <li>Difficulty breathing or swallowing</li>
+          <li>Swelling that is rapidly worsening, particularly around the eyes, throat, or neck</li>
+          <li>Heavy or uncontrolled bleeding that does not respond to firm pressure</li>
+          <li>High fever (above 38.5°C) with increasing pain or swelling</li>
+          <li>Chest pain, severe headache, or loss of consciousness</li>
+        </ul>
+        <div class="policy-h4">Contacting the clinic after hours</div>
+        <p class="policy-p">For non-urgent concerns that can wait until the next business day, please leave a message with our reception team and we will respond promptly. For urgent but non-life-threatening concerns outside of business hours, our after-hours contact details will be provided to you at the time of your procedure.</p>
+        <p class="policy-p">Please do not use email for urgent or time-sensitive clinical matters.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- Ready to register CTA -->
   <div class="mt-8 p-6 rounded-2xl text-center" style="background:linear-gradient(135deg,#f0fbfb,#e5f7f7);border:1px solid rgba(42,180,180,0.2)">
     <p class="font-display font-semibold text-navy-800 text-lg mb-2">Ready to register as a new patient?</p>
@@ -545,7 +597,7 @@ function Step1({d,set,err}) {
       <Field label="Surname" required error={err.surname}><input type="text" value={d.surname} onChange={e=>set('surname',e.target.value)} className={err.surname?'err':''} placeholder="Family name"/></Field>
       <Field label="Given Names" required error={err.givenNames}><input type="text" value={d.givenNames} onChange={e=>set('givenNames',e.target.value)} className={err.givenNames?'err':''} placeholder="All given names"/></Field>
       <Field label="Preferred Name" help="What would you like us to call you?"><input type="text" value={d.preferredName} onChange={e=>set('preferredName',e.target.value)} placeholder="Preferred name"/></Field>
-      <Field label="Date of Birth" required error={err.dob}><input type="date" value={d.dob} onChange={e=>set('dob',e.target.value)} className={err.dob?'err':''}/></Field>
+      <Field label="Date of Birth" required error={err.dob}><input type="text" inputMode="numeric" placeholder="DD/MM/YYYY" value={d.dob} onChange={e=>set('dob',e.target.value)} className={err.dob?'err':''}/></Field>
       <Field label="Country of Birth"><input type="text" value={d.countryBirth} onChange={e=>set('countryBirth',e.target.value)} placeholder="e.g. Australia"/></Field>
       <div className="fgroup"><label>Gender <span style={{fontWeight:400,textTransform:'none',fontSize:10,color:'var(--muted)'}}>as per Medicare card</span></label><RG options={['Male','Female','Non-binary','Other']} value={d.gender} onChange={v=>set('gender',v)} name="gender"/>{d.gender==='Other'&&<input type="text" value={d.genderOther} onChange={e=>set('genderOther',e.target.value)} placeholder="Please specify" style={{marginTop:8}}/>}</div>
       <div className="fgroup s2"><label>Pronouns</label><RG options={['He / Him','She / Her','They / Them','Other']} value={d.pronouns} onChange={v=>set('pronouns',v)} name="pronouns"/>{d.pronouns==='Other'&&<input type="text" value={d.pronounsOther} onChange={e=>set('pronounsOther',e.target.value)} placeholder="Please specify" style={{marginTop:8}}/>}</div>
@@ -825,7 +877,7 @@ function FormApp() {
 
   const validate=()=>{
     const e={};
-    if(step===0){if(!s1.title)e.title='Please select a title';if(!s1.surname.trim())e.surname='Surname is required';if(!s1.givenNames.trim())e.givenNames='Given name(s) required';if(!s1.dob)e.dob='Date of birth required';if(!s1.address.trim())e.address='Address required';if(!s1.suburb.trim())e.suburb='Suburb required';if(!s1.postcode.trim())e.postcode='Postcode required';if(!s1.mobile.trim())e.mobile='Mobile required';if(!s1.email.trim())e.email='Email required';else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s1.email))e.email='Please enter a valid email';}
+    if(step===0){if(!s1.title)e.title='Please select a title';if(!s1.surname.trim())e.surname='Surname is required';if(!s1.givenNames.trim())e.givenNames='Given name(s) required';if(!s1.dob)e.dob='Date of birth required';else if(!/^\d{2}\/\d{2}\/\d{4}$/.test(s1.dob))e.dob='Please enter date as DD/MM/YYYY';if(!s1.address.trim())e.address='Address required';if(!s1.suburb.trim())e.suburb='Suburb required';if(!s1.postcode.trim())e.postcode='Postcode required';if(!s1.mobile.trim())e.mobile='Mobile required';if(!s1.email.trim())e.email='Email required';else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s1.email))e.email='Please enter a valid email';}
     if(step===2){if(!s3.ecName.trim())e.ecName='Contact name required';if(!s3.ecRel)e.ecRel='Relationship required';if(!s3.ecMobile.trim())e.ecMobile='Mobile required';}
     if(step===4){if(!s5.consentPrivacy||!s5.consentMHR||!s5.consentAI||!s5.consentComms||!s5.consentAccuracy)e.consent='Please agree to all consent items above to proceed.';if(!s5.sigName.trim())e.sigName='Please print your full name';if(sigEmpty)e.sig='Signature is required';}
     if(step===5){if(!s6.accountType)e.accountType='Please select who will be responsible for the account.';if(s6.accountType==='parent'||s6.accountType==='other'){if(!s6.ahName.trim())e.ahName='Account holder name required';if(!s6.ahEmail.trim())e.ahEmail='Email required';if(!s6.ahPhone.trim())e.ahPhone='Phone required';}if(s6.accountType==='org'&&!s6.orgName)e.orgName='Please select an organisation';if(s6.accountType&&s6.accountType!=='org'&&!s6.consentFinancial)e.consent='Please agree to the Financial Responsibility Agreement.';if(s6.accountType&&s6.accountType!=='org'&&!s6.consentPayTerms)e.consentPayTerms='Please agree to the payment terms.';}
