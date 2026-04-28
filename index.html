@@ -278,8 +278,9 @@
 
       <!-- CTA -->
       <div class="hidden md:flex items-center gap-3">
-        <a href="#contact" class="btn-primary px-5 py-2.5 rounded-full text-sm font-semibold">
-          Book Consultation
+        <!-- HEALTHENGINE: replace href below with your HealthEngine booking URL from Practice Admin → Appointments Setup → Website Plugin -->
+        <a href="#contact" id="healthengine-book-btn" class="btn-primary px-5 py-2.5 rounded-full text-sm font-semibold">
+          Book Online
         </a>
         <a href="payment.html" class="btn-ghost px-4 py-2.5 rounded-full text-sm font-medium flex items-center gap-1.5 bg-white">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
@@ -309,7 +310,8 @@
         <a href="#contact"  class="nav-link py-1" onclick="closeMobileMenu()">Contact</a>
         <a href="#faq"      class="nav-link py-1" onclick="closeMobileMenu()">FAQ</a>
         <div class="flex flex-col gap-2 mt-1">
-          <a href="#contact"  class="btn-primary px-5 py-3 rounded-full text-sm font-semibold text-center" onclick="closeMobileMenu()">Book Consultation</a>
+          <!-- HEALTHENGINE: replace href below with your HealthEngine booking URL -->
+          <a href="#contact"  class="btn-primary px-5 py-3 rounded-full text-sm font-semibold text-center" onclick="closeMobileMenu()">Book Online</a>
           <a href="payment.html" class="btn-ghost px-5 py-3 rounded-full text-sm font-medium text-center flex items-center justify-center gap-2 bg-white" onclick="closeMobileMenu()">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
             Pay Invoice
@@ -777,13 +779,11 @@
           <p class="text-navy-400 text-sm leading-relaxed">Oral & Maxillofacial Surgery by Dr Anna Raymond. Specialist care with a personal touch.</p>
         </div>
         <div>
-          <h4 class="font-semibold text-white text-sm mb-4 tracking-wide">Navigation</h4>
+          <h4 class="font-semibold text-white text-sm mb-4 tracking-wide">For Our Patients</h4>
           <div class="flex flex-col gap-2">
-            <a href="#about"    class="text-navy-400 text-sm hover:text-teal-400 transition-colors">About</a>
-            <a href="#journey"  class="text-navy-400 text-sm hover:text-teal-400 transition-colors">Your Journey</a>
-            <a href="#services" class="text-navy-400 text-sm hover:text-teal-400 transition-colors">Services</a>
-            <a href="#faq"      class="text-navy-400 text-sm hover:text-teal-400 transition-colors">FAQ</a>
-            <a href="#contact"  class="text-navy-400 text-sm hover:text-teal-400 transition-colors">Contact</a>
+            <span class="text-navy-600 text-sm">A Personal Welcome</span>
+            <a href="Patient Information.html#form" class="text-navy-400 text-sm hover:text-teal-400 transition-colors">New Patient Form</a>
+            <a href="Patient Information.html" class="text-navy-400 text-sm hover:text-teal-400 transition-colors">Practice Policies</a>
           </div>
         </div>
         <div>
@@ -791,7 +791,6 @@
           <div class="flex flex-col gap-2">
             <a href="tel:1300111324" class="text-navy-400 text-sm hover:text-teal-400 transition-colors">1300 111 324</a>
             <a href="#contact" class="text-navy-400 text-sm hover:text-teal-400 transition-colors">Email Us</a>
-            <a href="patient-information.html" class="text-navy-400 text-sm hover:text-teal-400 transition-colors mt-1">New Patient Form</a>
             <a href="payment.html" class="text-navy-400 text-sm hover:text-teal-400 transition-colors">Pay an invoice</a>
           </div>
         </div>

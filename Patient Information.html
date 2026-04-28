@@ -385,8 +385,18 @@ body { font-family:'DM Sans',system-ui,sans-serif; background:#f8fdfd; color:#1a
 
         <div class="policy-h4">Overdue Accounts</div>
         <p class="policy-p">Accounts unpaid after the due date may incur late payment charges. Outstanding accounts referred to a debt collection agency may attract additional recovery costs, including debt collection and legal fees, which will be added to the outstanding balance. We encourage you to contact us promptly if you have any difficulty meeting payment obligations.</p>
+      </div>
+    </div>
+  </div>
 
-        <div class="policy-h4">Cancellations and No-Shows</div>
+  <!-- CANCELLATION POLICY -->
+  <div class="policy-section" id="ps-cancellation">
+    <div class="policy-section-head" onclick="toggleSection('ps-cancellation')">
+      <h3>Cancellation Policy</h3>
+      <span class="ps-icon">+</span>
+    </div>
+    <div class="policy-section-body">
+      <div style="padding-top:16px">
         <p class="policy-p">We request a minimum of 48 hours notice for cancellations or rescheduling. Late cancellations and no-shows may incur an administrative fee, which will be communicated to you at the time of booking.</p>
       </div>
     </div>
@@ -430,13 +440,12 @@ body { font-family:'DM Sans',system-ui,sans-serif; background:#f8fdfd; color:#1a
           <li><strong>Referral correspondence</strong> — to communicate with your referring practitioner or other treating clinicians</li>
           <li><strong>Education and teaching</strong> — to train dental and medical students and practitioners (de-identified)</li>
           <li><strong>Research</strong> — for peer-reviewed clinical research (de-identified and with ethics approval)</li>
-          <li><strong>Marketing and practice promotion</strong> — with your explicit separate consent only</li>
         </ul>
         <div class="policy-h4">Your consent</div>
-        <p class="policy-p">Clinical photographs taken for the purposes of your treatment and records are collected as part of your care and are covered by your general consent to treatment. You will be asked to provide separate, specific written consent before any images are used for education, research, or marketing purposes.</p>
+        <p class="policy-p">Clinical photographs taken for the purposes of your treatment and records are collected as part of your care and are covered by your general consent to treatment. You will be asked to provide separate, specific written consent before any images are used for education or research purposes.</p>
         <p class="policy-p">You have the right to decline photography for any purpose beyond your clinical record. Declining will not affect the quality of care you receive, though in some cases it may limit certain treatment planning options — Dr Raymond will discuss this with you if relevant.</p>
         <div class="policy-h4">Storage and privacy</div>
-        <p class="policy-p">Clinical images are stored securely within your patient record and handled in accordance with our Privacy Policy and the Australian Privacy Principles. Images used for education or research are de-identified before use. Marketing images are only used with your signed written authorisation and will not be published or shared beyond the agreed scope.</p>
+        <p class="policy-p">Clinical images are stored securely within your patient record and handled in accordance with our Privacy Policy and the Australian Privacy Principles. Images used for education or research are de-identified before use.</p>
       </div>
     </div>
   </div>
@@ -490,8 +499,8 @@ body { font-family:'DM Sans',system-ui,sans-serif; background:#f8fdfd; color:#1a
     <div class="flex flex-col items-center sm:items-start gap-2">
       <p class="text-xs font-semibold opacity-60" style="color:#7aa0c6;letter-spacing:0.05em;text-transform:uppercase">For Our Patients</p>
       <div class="flex flex-col sm:flex-row items-center gap-3">
-        <a href="index.html" class="text-xs opacity-40 hover:opacity-70 transition-opacity" style="color:#7aa0c6">Welcome</a>
-        <a href="#" onclick="switchTab('form');return false;" class="text-xs opacity-40 hover:opacity-70 transition-opacity" style="color:#7aa0c6">Patient Registration</a>
+        <span class="text-xs opacity-20" style="color:#7aa0c6">A Personal Welcome</span>
+        <a href="#" onclick="switchTab('form');return false;" class="text-xs opacity-40 hover:opacity-70 transition-opacity" style="color:#7aa0c6">New Patient Form</a>
         <a href="#" onclick="switchTab('policies');return false;" class="text-xs opacity-40 hover:opacity-70 transition-opacity" style="color:#7aa0c6">Practice Policies</a>
       </div>
     </div>
@@ -510,6 +519,7 @@ function switchTab(tab) {
 function toggleSection(id) {
   document.getElementById(id).classList.toggle('open');
 }
+if (window.location.hash === '#form') switchTab('form');
 </script>
 
 <script type="text/babel">
