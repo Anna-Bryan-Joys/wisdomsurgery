@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Letterhead — Midnight Garden</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#b8bfc6;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:48px 20px;font-family:'DM Sans',sans-serif;gap:12px;}
+  .label{color:#7a8490;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;font-family:'DM Sans',sans-serif;}
+  .page{width:794px;height:1122px;background:#fdf8f2;position:relative;box-shadow:0 24px 64px rgba(0,0,0,0.28),0 4px 16px rgba(0,0,0,0.12);overflow:hidden;flex-shrink:0;}
+  .border-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+  .content{position:absolute;top:76px;left:76px;right:76px;bottom:72px;display:flex;flex-direction:column;}
+  .lh-header{display:grid;grid-template-columns:1fr 64px 1fr;align-items:center;padding-bottom:14px;margin-bottom:0;gap:16px;border-bottom:none;position:relative;}
+  .lh-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#c4902a,#091d38,#c4902a,transparent);}
+  .lh-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#091d38;line-height:1.3;}
+  .lh-title{font-size:10px;color:#c4902a;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-top:3px;}
+  .lh-meta{font-size:10px;color:#5a4a3a;line-height:1.85;margin-top:5px;}
+  .lh-logo-center{display:flex;justify-content:center;align-items:center;}
+  .lh-practice{text-align:right;}
+  .lh-practice-name{font-family:'Playfair Display',serif;font-size:12px;font-weight:600;color:#091d38;letter-spacing:0.1em;text-transform:uppercase;}
+  .lh-body{flex:1;}
+  .lh-footer{padding-top:12px;display:flex;justify-content:center;align-items:center;position:relative;}
+  .lh-footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#c4902a,#091d38,#c4902a,transparent);}
+</style>
+</head>
+<body>
+<div class="label">Option 2 — Midnight Garden</div>
+<div class="page">
+
+  <svg class="border-svg" viewBox="0 0 794 1122" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Double ruled border frame -->
+    <rect x="36" y="36" width="722" height="1050" stroke="#091d38" stroke-width="1.2" fill="none" opacity="0.8"/>
+    <rect x="44" y="44" width="706" height="1034" stroke="#c4902a" stroke-width="0.6" fill="none" opacity="0.6"/>
+
+    <!-- ╔════════════════════════════════════════╗
+         ║  TOP EDGE botanical — sparse + elegant  ║
+         ╚════════════════════════════════════════╝ -->
+    <!-- Just sparse botanical sprigs along top, not dense wall -->
+    <!-- Central top sprig -->
+    <g transform="translate(397,36)">
+      <line x1="0" y1="0" x2="0" y2="-30" stroke="#091d38" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+      <path d="M 0,-14 C -16,-18 -24,-28 -22,-38 C -10,-30 -4,-20 0,-14 Z" fill="#c4902a" opacity="0.8"/>
+      <path d="M 0,-14 C 16,-18 24,-28 22,-38 C 10,-30 4,-20 0,-14 Z" fill="#c4902a" opacity="0.8"/>
+      <path d="M 0,-22 C -12,-26 -18,-34 -16,-42 C -6,-36 -2,-28 0,-22 Z" fill="#d4b060" opacity="0.6"/>
+      <path d="M 0,-22 C 12,-26 18,-34 16,-42 C 6,-36 2,-28 0,-22 Z" fill="#d4b060" opacity="0.6"/>
+      <circle cx="0" cy="-30" r="2.5" fill="#091d38" opacity="0.6"/>
+    </g>
+
+    <!-- Left-of-center top -->
+    <g transform="translate(220,36)">
+      <line x1="0" y1="0" x2="-4" y2="-24" stroke="#091d38" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <path d="M -4,-12 C -18,-14 -26,-22 -24,-30 C -12,-26 -6,-16 -4,-12 Z" fill="#091d38" opacity="0.35"/>
+      <path d="M -4,-12 C 8,-16 14,-24 10,-32 C 2,-26 -2,-16 -4,-12 Z" fill="#c4902a" opacity="0.55"/>
+    </g>
+    <!-- Right-of-center top -->
+    <g transform="translate(574,36)">
+      <line x1="0" y1="0" x2="4" y2="-24" stroke="#091d38" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 4,-12 C 18,-14 26,-22 24,-30 C 12,-26 6,-16 4,-12 Z" fill="#091d38" opacity="0.35"/>
+      <path d="M 4,-12 C -8,-16 -14,-24 -10,-32 C -2,-26 2,-16 4,-12 Z" fill="#c4902a" opacity="0.55"/>
+    </g>
+
+    <!-- ╔═══════════════════════════════════════╗
+         ║  BOTTOM EDGE botanical — mirror of top ║
+         ╚═══════════════════════════════════════╝ -->
+    <g transform="translate(397,1086)">
+      <line x1="0" y1="0" x2="0" y2="30" stroke="#091d38" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+      <path d="M 0,14 C -16,18 -24,28 -22,38 C -10,30 -4,20 0,14 Z" fill="#c4902a" opacity="0.8"/>
+      <path d="M 0,14 C 16,18 24,28 22,38 C 10,30 4,20 0,14 Z" fill="#c4902a" opacity="0.8"/>
+      <path d="M 0,22 C -12,26 -18,34 -16,42 C -6,36 -2,28 0,22 Z" fill="#d4b060" opacity="0.6"/>
+      <path d="M 0,22 C 12,26 18,34 16,42 C 6,36 2,28 0,22 Z" fill="#d4b060" opacity="0.6"/>
+      <circle cx="0" cy="30" r="2.5" fill="#091d38" opacity="0.6"/>
+    </g>
+    <g transform="translate(220,1086)">
+      <line x1="0" y1="0" x2="-4" y2="24" stroke="#091d38" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <path d="M -4,12 C -18,14 -26,22 -24,30 C -12,26 -6,16 -4,12 Z" fill="#091d38" opacity="0.35"/>
+      <path d="M -4,12 C 8,16 14,24 10,32 C 2,26 -2,16 -4,12 Z" fill="#c4902a" opacity="0.55"/>
+    </g>
+    <g transform="translate(574,1086)">
+      <line x1="0" y1="0" x2="4" y2="24" stroke="#091d38" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 4,12 C 18,14 26,22 24,30 C 12,26 6,16 4,12 Z" fill="#091d38" opacity="0.35"/>
+      <path d="M 4,12 C -8,16 -14,24 -10,32 C -2,26 2,16 4,12 Z" fill="#c4902a" opacity="0.55"/>
+    </g>
+
+    <!-- ╔═════════════════════════════════════════╗
+         ║  LEFT EDGE — sparse botanical mid-points ║
+         ╚═════════════════════════════════════════╝ -->
+    <g transform="translate(36,400)">
+      <line x1="0" y1="0" x2="-28" y2="0" stroke="#091d38" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <path d="M -14,0 C -16,-14 -24,-22 -32,-20 C -28,-10 -22,-4 -14,0 Z" fill="#c4902a" opacity="0.7"/>
+      <path d="M -14,0 C -16,14 -24,22 -32,20 C -28,10 -22,4 -14,0 Z" fill="#091d38" opacity="0.3"/>
+    </g>
+    <g transform="translate(36,722)">
+      <line x1="0" y1="0" x2="-28" y2="0" stroke="#091d38" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <path d="M -14,0 C -16,-14 -24,-22 -32,-20 C -28,-10 -22,-4 -14,0 Z" fill="#091d38" opacity="0.3"/>
+      <path d="M -14,0 C -16,14 -24,22 -32,20 C -28,10 -22,4 -14,0 Z" fill="#c4902a" opacity="0.7"/>
+    </g>
+
+    <!-- RIGHT EDGE -->
+    <g transform="translate(758,400)">
+      <line x1="0" y1="0" x2="28" y2="0" stroke="#091d38" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 14,0 C 16,-14 24,-22 32,-20 C 28,-10 22,-4 14,0 Z" fill="#c4902a" opacity="0.7"/>
+      <path d="M 14,0 C 16,14 24,22 32,20 C 28,10 22,4 14,0 Z" fill="#091d38" opacity="0.3"/>
+    </g>
+    <g transform="translate(758,722)">
+      <line x1="0" y1="0" x2="28" y2="0" stroke="#091d38" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 14,0 C 16,-14 24,-22 32,-20 C 28,-10 22,-4 14,0 Z" fill="#091d38" opacity="0.3"/>
+      <path d="M 14,0 C 16,14 24,22 32,20 C 28,10 22,4 14,0 Z" fill="#c4902a" opacity="0.7"/>
+    </g>
+
+    <!-- ╔════════════════════════════════╗
+         ║  CORNER MEDALLIONS — elaborate  ║
+         ╚════════════════════════════════╝ -->
+
+    <!-- TOP-LEFT MEDALLION -->
+    <g transform="translate(44,44)">
+      <!-- Radiating navy stems -->
+      <path d="M 0,0 C 18,16 28,38 30,62" stroke="#091d38" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <path d="M 0,0 C 16,16 38,26 62,28" stroke="#091d38" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <path d="M 0,0 C 22,14 40,14 64,16" stroke="#091d38" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 0,0 C 14,22 16,40 18,64" stroke="#091d38" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+
+      <!-- Large gold leaves on diagonal stem -->
+      <path d="M 20,20 C 10,10 10,−2 20,−8 C 30,−2 28,12 20,20 Z" fill="#c4902a" opacity="0.85"/>
+      <path d="M 32,34 C 20,24 18,10 28,2 C 40,10 40,26 32,34 Z" fill="#c4902a" opacity="0.85"/>
+      <path d="M 28,52 C 16,42 14,26 24,16 C 38,26 38,44 28,52 Z" fill="#d4a844" opacity="0.7"/>
+
+      <!-- Navy accent leaves -->
+      <path d="M 16,14 C 8,6 8,−4 16,−10 C 24,−4 22,8 16,14 Z" fill="#091d38" opacity="0.6"/>
+      <path d="M 10,30 C 2,22 2,10 10,4 C 18,10 18,24 10,30 Z" fill="#091d38" opacity="0.5"/>
+
+      <!-- Horizontal gold leaves -->
+      <path d="M 44,14 C 48,4 56,0 64,4 C 62,14 54,18 44,14 Z" fill="#c4902a" opacity="0.8"/>
+      <path d="M 62,12 C 60,2 66,−4 74,0 C 76,8 70,18 62,12 Z" fill="#d4a844" opacity="0.65"/>
+
+      <!-- Vertical gold leaves -->
+      <path d="M 14,46 C 4,42 0,34 4,26 C 14,28 20,38 14,46 Z" fill="#c4902a" opacity="0.75"/>
+      <path d="M 12,64 C 2,58 0,50 4,42 C 14,44 18,56 12,64 Z" fill="#d4a844" opacity="0.6"/>
+
+      <!-- Gold dot accents -->
+      <circle cx="22" cy="−6" r="3" fill="#e8c56a" opacity="0.8"/>
+      <circle cx="66" cy="6" r="2.5" fill="#e8c56a" opacity="0.7"/>
+      <circle cx="6" cy="68" r="2.5" fill="#e8c56a" opacity="0.7"/>
+
+      <!-- Fine vein lines -->
+      <line x1="20" y1="20" x2="20" y2="-8" stroke="#5a3a10" stroke-width="0.5" opacity="0.4"/>
+      <line x1="32" y1="34" x2="28" y2="2"  stroke="#5a3a10" stroke-width="0.5" opacity="0.4"/>
+    </g>
+
+    <!-- TOP-RIGHT MEDALLION -->
+    <g transform="translate(750,44) scale(-1,1)">
+      <path d="M 0,0 C 18,16 28,38 30,62" stroke="#091d38" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <path d="M 0,0 C 16,16 38,26 62,28" stroke="#091d38" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <path d="M 0,0 C 22,14 40,14 64,16" stroke="#091d38" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 0,0 C 14,22 16,40 18,64" stroke="#091d38" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 20,20 C 10,10 10,−2 20,−8 C 30,−2 28,12 20,20 Z" fill="#c4902a" opacity="0.85"/>
+      <path d="M 32,34 C 20,24 18,10 28,2 C 40,10 40,26 32,34 Z" fill="#c4902a" opacity="0.85"/>
+      <path d="M 28,52 C 16,42 14,26 24,16 C 38,26 38,44 28,52 Z" fill="#d4a844" opacity="0.7"/>
+      <path d="M 16,14 C 8,6 8,−4 16,−10 C 24,−4 22,8 16,14 Z" fill="#091d38" opacity="0.6"/>
+      <path d="M 10,30 C 2,22 2,10 10,4 C 18,10 18,24 10,30 Z" fill="#091d38" opacity="0.5"/>
+      <path d="M 44,14 C 48,4 56,0 64,4 C 62,14 54,18 44,14 Z" fill="#c4902a" opacity="0.8"/>
+      <path d="M 62,12 C 60,2 66,−4 74,0 C 76,8 70,18 62,12 Z" fill="#d4a844" opacity="0.65"/>
+      <path d="M 14,46 C 4,42 0,34 4,26 C 14,28 20,38 14,46 Z" fill="#c4902a" opacity="0.75"/>
+      <path d="M 12,64 C 2,58 0,50 4,42 C 14,44 18,56 12,64 Z" fill="#d4a844" opacity="0.6"/>
+      <circle cx="22" cy="−6" r="3" fill="#e8c56a" opacity="0.8"/>
+      <circle cx="66" cy="6" r="2.5" fill="#e8c56a" opacity="0.7"/>
+      <circle cx="6" cy="68" r="2.5" fill="#e8c56a" opacity="0.7"/>
+    </g>
+
+    <!-- BOTTOM-LEFT MEDALLION -->
+    <g transform="translate(44,1078) scale(1,-1)">
+      <path d="M 0,0 C 18,16 28,38 30,62" stroke="#091d38" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <path d="M 0,0 C 16,16 38,26 62,28" stroke="#091d38" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <path d="M 0,0 C 22,14 40,14 64,16" stroke="#091d38" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 0,0 C 14,22 16,40 18,64" stroke="#091d38" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 20,20 C 10,10 10,−2 20,−8 C 30,−2 28,12 20,20 Z" fill="#c4902a" opacity="0.85"/>
+      <path d="M 32,34 C 20,24 18,10 28,2 C 40,10 40,26 32,34 Z" fill="#c4902a" opacity="0.85"/>
+      <path d="M 28,52 C 16,42 14,26 24,16 C 38,26 38,44 28,52 Z" fill="#d4a844" opacity="0.7"/>
+      <path d="M 16,14 C 8,6 8,−4 16,−10 C 24,−4 22,8 16,14 Z" fill="#091d38" opacity="0.6"/>
+      <path d="M 10,30 C 2,22 2,10 10,4 C 18,10 18,24 10,30 Z" fill="#091d38" opacity="0.5"/>
+      <path d="M 44,14 C 48,4 56,0 64,4 C 62,14 54,18 44,14 Z" fill="#c4902a" opacity="0.8"/>
+      <path d="M 62,12 C 60,2 66,−4 74,0 C 76,8 70,18 62,12 Z" fill="#d4a844" opacity="0.65"/>
+      <path d="M 14,46 C 4,42 0,34 4,26 C 14,28 20,38 14,46 Z" fill="#c4902a" opacity="0.75"/>
+      <path d="M 12,64 C 2,58 0,50 4,42 C 14,44 18,56 12,64 Z" fill="#d4a844" opacity="0.6"/>
+      <circle cx="22" cy="−6" r="3" fill="#e8c56a" opacity="0.8"/>
+      <circle cx="66" cy="6" r="2.5" fill="#e8c56a" opacity="0.7"/>
+      <circle cx="6" cy="68" r="2.5" fill="#e8c56a" opacity="0.7"/>
+    </g>
+
+    <!-- BOTTOM-RIGHT MEDALLION -->
+    <g transform="translate(750,1078) scale(-1,-1)">
+      <path d="M 0,0 C 18,16 28,38 30,62" stroke="#091d38" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <path d="M 0,0 C 16,16 38,26 62,28" stroke="#091d38" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <path d="M 0,0 C 22,14 40,14 64,16" stroke="#091d38" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 0,0 C 14,22 16,40 18,64" stroke="#091d38" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 20,20 C 10,10 10,−2 20,−8 C 30,−2 28,12 20,20 Z" fill="#c4902a" opacity="0.85"/>
+      <path d="M 32,34 C 20,24 18,10 28,2 C 40,10 40,26 32,34 Z" fill="#c4902a" opacity="0.85"/>
+      <path d="M 28,52 C 16,42 14,26 24,16 C 38,26 38,44 28,52 Z" fill="#d4a844" opacity="0.7"/>
+      <path d="M 16,14 C 8,6 8,−4 16,−10 C 24,−4 22,8 16,14 Z" fill="#091d38" opacity="0.6"/>
+      <path d="M 10,30 C 2,22 2,10 10,4 C 18,10 18,24 10,30 Z" fill="#091d38" opacity="0.5"/>
+      <path d="M 44,14 C 48,4 56,0 64,4 C 62,14 54,18 44,14 Z" fill="#c4902a" opacity="0.8"/>
+      <path d="M 62,12 C 60,2 66,−4 74,0 C 76,8 70,18 62,12 Z" fill="#d4a844" opacity="0.65"/>
+      <path d="M 14,46 C 4,42 0,34 4,26 C 14,28 20,38 14,46 Z" fill="#c4902a" opacity="0.75"/>
+      <path d="M 12,64 C 2,58 0,50 4,42 C 14,44 18,56 12,64 Z" fill="#d4a844" opacity="0.6"/>
+      <circle cx="22" cy="−6" r="3" fill="#e8c56a" opacity="0.8"/>
+      <circle cx="66" cy="6" r="2.5" fill="#e8c56a" opacity="0.7"/>
+      <circle cx="6" cy="68" r="2.5" fill="#e8c56a" opacity="0.7"/>
+    </g>
+
+    <!-- Corner diamond ornaments (on the ruled lines) -->
+    <path d="M 40,40 L 44,36 L 48,40 L 44,44 Z" fill="#c4902a" opacity="0.9"/>
+    <path d="M 750,40 L 754,36 L 758,40 L 754,44 Z" fill="#c4902a" opacity="0.9"/>
+    <path d="M 40,1082 L 44,1078 L 48,1082 L 44,1086 Z" fill="#c4902a" opacity="0.9"/>
+    <path d="M 750,1082 L 754,1078 L 758,1082 L 754,1086 Z" fill="#c4902a" opacity="0.9"/>
+
+    <!-- Mid-edge diamond ornaments -->
+    <path d="M 393,40 L 397,36 L 401,40 L 397,44 Z" fill="#091d38" opacity="0.5"/>
+    <path d="M 393,1082 L 397,1078 L 401,1082 L 397,1086 Z" fill="#091d38" opacity="0.5"/>
+    <path d="M 40,557 L 44,553 L 48,557 L 44,561 Z" fill="#091d38" opacity="0.5"/>
+    <path d="M 750,557 L 754,553 L 758,557 L 754,561 Z" fill="#091d38" opacity="0.5"/>
+
+  </svg>
+
+  <!-- LETTERHEAD CONTENT -->
+  <div class="content">
+    <div class="lh-header">
+      <div>
+        <div class="lh-name">Dr Anna Raymond</div>
+        <div class="lh-title">Oral and Maxillofacial Surgeon</div>
+        <div class="lh-meta">Provider Number: 433358WW</div>
+      </div>
+      <div class="lh-logo-center">
+        <img src="brand_assets/WisdomSurgery_Logo_Circle.PNG" alt="" style="width:58px;height:58px;object-fit:contain;filter:sepia(0.2) brightness(0.9);"/>
+      </div>
+      <div class="lh-practice">
+        <div class="lh-practice-name">Wisdom Surgery Clinic</div>
+        <div class="lh-meta">hello@wisdomsurgery.clinic<br/>Phone: <strong style="color:#091d38;">1300 111 324</strong></div>
+      </div>
+    </div>
+    <div class="lh-body"></div>
+    <div class="lh-footer">
+      <img src="brand_assets/Wisdomsurgery Clinic logo - stamp version-Picsart-BackgroundRemover.PNG" alt="WISDOMSURGERY.CLINIC" style="height:34px;opacity:0.65;filter:sepia(0.3);"/>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
