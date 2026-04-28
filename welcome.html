@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Personal Welcome — Wisdom Surgery Clinic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal:  { 50:'#f0fbfb',100:'#d9f4f4',200:'#b2e9e9',300:'#7dd8d8',400:'#3ec4c4',500:'#2ab4b4',600:'#1e9696',700:'#187878',800:'#155f5f',900:'#124f4f' },
+            navy:  { 50:'#eef3f8',100:'#d5e1ee',200:'#adc4dd',300:'#7aa0c6',400:'#4d7daf',500:'#2e5f94',600:'#1e4a7a',700:'#153964',800:'#0f2a4d',900:'#091d38' },
+          },
+          fontFamily: {
+            display: ['"Playfair Display"','Georgia','serif'],
+            sans:    ['"DM Sans"','system-ui','sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',system-ui,sans-serif;background:#f8fdfd;color:#1a2e3b;}
+
+    /* Nav */
+    .nav-glass{background:rgba(248,253,253,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(42,180,180,0.12);box-shadow:0 2px 24px rgba(42,180,180,0.06),0 1px 4px rgba(0,0,0,0.04);}
+    .nav-link{position:relative;color:#4a6274;font-weight:500;font-size:0.9rem;letter-spacing:0.01em;text-decoration:none;transition:color 0.2s;}
+    .nav-link:hover{color:#2ab4b4;}
+    .btn-primary{background:linear-gradient(135deg,#2ab4b4 0%,#1e9696 100%);color:#fff;box-shadow:0 4px 18px rgba(42,180,180,0.35);transition:transform 0.2s,box-shadow 0.2s;text-decoration:none;}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(42,180,180,0.45);}
+    .btn-ghost{border:1.5px solid rgba(42,180,180,0.3);color:#2e5f94;text-decoration:none;transition:all 0.2s;}
+    .btn-ghost:hover{border-color:#2ab4b4;color:#2ab4b4;background:rgba(42,180,180,0.05);}
+    .mobile-menu{background:rgba(248,253,253,0.98);backdrop-filter:blur(12px);}
+
+    /* Hero botanical background */
+    .hero-botanical{
+      background:
+        radial-gradient(ellipse 90% 70% at 50% 0%,rgba(42,180,180,0.18) 0%,transparent 65%),
+        radial-gradient(ellipse 60% 50% at 10% 100%,rgba(9,29,56,0.06) 0%,transparent 60%),
+        #f0fbfb;
+    }
+
+    /* Letter card */
+    .letter-card{
+      background:#fff;
+      border:1px solid rgba(42,180,180,0.15);
+      box-shadow:0 8px 48px rgba(9,29,56,0.07),0 2px 12px rgba(42,180,180,0.08);
+      border-radius:2px;
+    }
+    .letter-card::before{
+      content:'';
+      display:block;
+      height:4px;
+      background:linear-gradient(90deg,#2ab4b4 0%,#0f2a4d 100%);
+      border-radius:2px 2px 0 0;
+    }
+
+    /* Info cards */
+    .info-card{
+      background:#fff;
+      border:1px solid rgba(42,180,180,0.12);
+      border-top:3px solid #2ab4b4;
+      border-radius:2px;
+      box-shadow:0 4px 24px rgba(9,29,56,0.05);
+      transition:transform 0.2s,box-shadow 0.2s;
+    }
+    .info-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(9,29,56,0.10);}
+    .info-card.navy-top{border-top-color:#0f2a4d;}
+    .info-card.gold-top{border-top-color:#b09a6e;}
+
+    /* Botanical divider leaf */
+    .leaf-divider{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 auto;}
+    .leaf-divider::before,.leaf-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(42,180,180,0.3),transparent);}
+
+    /* Signature */
+    .signature-text{font-family:'Playfair Display',serif;font-style:italic;font-size:1.5rem;color:#0f2a4d;line-height:1.2;}
+
+    /* Step pills */
+    .step-pill{display:flex;align-items:center;gap:12px;padding:14px 18px;background:rgba(42,180,180,0.07);border-left:3px solid #2ab4b4;border-radius:0 6px 6px 0;}
+
+    /* Botanical corner - purely decorative SVG overlays */
+    .botanical-hero-overlay{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<header class="nav-glass sticky top-0 z-50">
+  <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="index.html">
+      <img src="brand_assets/WisdomSurgery_Logo_Horizontal.png" alt="Wisdom Surgery Clinic" class="h-9 w-auto" />
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html#journey" class="nav-link">Your Journey</a>
+      <a href="index.html#services" class="nav-link">Services</a>
+      <a href="index.html#about" class="nav-link">About</a>
+      <a href="index.html#contact" class="nav-link">Contact</a>
+    </div>
+    <div class="hidden md:flex items-center gap-3">
+      <a href="index.html#contact" class="btn-primary px-5 py-2.5 rounded-full text-sm font-semibold">Book Online</a>
+      <a href="payment.html" class="btn-ghost px-4 py-2.5 rounded-full text-sm font-medium flex items-center gap-1.5 bg-white">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+        Pay Invoice
+      </a>
+    </div>
+    <button id="menu-toggle" class="md:hidden p-2 rounded-lg text-navy-700 hover:bg-teal-50 transition-colors" aria-label="Open menu">
+      <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </nav>
+  <div id="mobile-menu" class="mobile-menu hidden md:hidden px-6 pb-5 pt-1 border-t border-teal-100">
+    <div class="flex flex-col gap-4">
+      <a href="index.html#journey" class="nav-link py-1">Your Journey</a>
+      <a href="index.html#services" class="nav-link py-1">Services</a>
+      <a href="index.html#about" class="nav-link py-1">About</a>
+      <a href="index.html#contact" class="nav-link py-1">Contact</a>
+      <a href="index.html#contact" class="btn-primary px-5 py-3 rounded-full text-sm font-semibold text-center mt-1">Book Online</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero-botanical relative overflow-hidden" style="padding:64px 24px 80px;">
+  <!-- Botanical SVG background decoration -->
+  <div class="botanical-hero-overlay">
+    <svg viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:-40px;right:-60px;width:600px;opacity:0.07;">
+      <g stroke="#0f2a4d" stroke-width="1.2" fill="none">
+        <!-- Large branch right -->
+        <path d="M800 400 C780 350 760 280 740 220 C720 160 710 100 720 40"/>
+        <path d="M740 220 C710 200 670 190 640 170 C620 155 605 140 600 120"/>
+        <path d="M740 220 C770 200 800 185 820 165 C835 150 845 135 840 115"/>
+        <path d="M760 290 C730 275 695 268 668 250 C648 238 635 222 632 202"/>
+        <path d="M760 290 C788 274 812 266 832 248 C848 235 857 220 854 200"/>
+        <!-- Leaf clusters left -->
+        <ellipse cx="620" cy="118" rx="28" ry="12" transform="rotate(-30 620 118)" opacity="0.6"/>
+        <ellipse cx="600" cy="102" rx="20" ry="9" transform="rotate(-45 600 102)" opacity="0.5"/>
+        <ellipse cx="840" cy="113" rx="28" ry="12" transform="rotate(25 840 113)" opacity="0.6"/>
+        <ellipse cx="855" cy="98" rx="20" ry="9" transform="rotate(40 855 98)" opacity="0.5"/>
+        <ellipse cx="632" cy="200" rx="30" ry="11" transform="rotate(-25 632 200)" opacity="0.5"/>
+        <ellipse cx="854" cy="198" rx="30" ry="11" transform="rotate(20 854 198)" opacity="0.5"/>
+        <!-- Extra branches -->
+        <path d="M720 140 C700 125 678 118 658 108 C642 100 632 90 630 75"/>
+        <path d="M720 140 C738 124 755 116 772 105 C786 96 793 86 790 71"/>
+        <ellipse cx="630" cy="73" rx="22" ry="9" transform="rotate(-35 630 73)" opacity="0.5"/>
+        <ellipse cx="790" cy="69" rx="22" ry="9" transform="rotate(30 790 69)" opacity="0.5"/>
+      </g>
+    </svg>
+    <svg viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:-20px;left:-40px;width:320px;opacity:0.06;">
+      <g stroke="#2ab4b4" stroke-width="1.4" fill="none">
+        <path d="M200 500 C195 440 188 370 175 300 C162 230 148 165 145 100"/>
+        <path d="M175 300 C148 285 118 278 95 260 C78 247 66 230 65 210"/>
+        <path d="M175 300 C202 284 228 276 248 258 C264 244 272 228 270 208"/>
+        <path d="M160 390 C134 376 104 370 80 353 C62 340 50 324 50 304"/>
+        <path d="M160 390 C186 376 212 368 232 350 C248 336 255 320 252 300"/>
+        <ellipse cx="65" cy="208" rx="28" ry="10" transform="rotate(-20 65 208)" opacity="0.7"/>
+        <ellipse cx="270" cy="206" rx="28" ry="10" transform="rotate(15 270 206)" opacity="0.7"/>
+        <ellipse cx="50" cy="302" rx="30" ry="10" transform="rotate(-15 50 302)" opacity="0.6"/>
+        <ellipse cx="252" cy="298" rx="30" ry="10" transform="rotate(12 252 298)" opacity="0.6"/>
+        <path d="M162 210 C138 196 112 190 90 176 C73 165 63 150 64 132"/>
+        <path d="M162 210 C186 196 208 188 226 174 C240 163 248 148 246 130"/>
+        <ellipse cx="64" cy="130" rx="24" ry="9" transform="rotate(-25 64 130)" opacity="0.6"/>
+        <ellipse cx="246" cy="128" rx="24" ry="9" transform="rotate(20 246 128)" opacity="0.6"/>
+      </g>
+    </svg>
+  </div>
+
+  <div style="position:relative;z-index:1;text-align:center;max-width:640px;margin:0 auto;">
+    <p class="text-teal-600 font-semibold text-xs tracking-widest uppercase mb-3">Wisdom Surgery Clinic</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold text-navy-900 mb-4" style="letter-spacing:-0.02em;line-height:1.15;">
+      A Personal<br><em style="color:#2ab4b4;">Welcome</em>
+    </h1>
+    <p class="text-navy-500 text-base" style="line-height:1.8;max-width:480px;margin:0 auto;">
+      From Dr Anna Raymond and the team at Wisdom Surgery Clinic — we're glad you're here.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ LETTER ═══ -->
+<section style="background:#f8fdfd;padding:0 24px 72px;">
+  <div class="letter-card max-w-2xl mx-auto" style="margin-top:-32px;padding:48px 52px 44px;">
+
+    <!-- Botanical leaf cluster -->
+    <div style="text-align:center;margin-bottom:36px;">
+      <svg viewBox="0 0 160 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:120px;display:inline-block;">
+        <!-- Center stem -->
+        <line x1="80" y1="52" x2="80" y2="8" stroke="#2ab4b4" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Main left leaf -->
+        <path d="M80 28 C68 22 52 14 40 6 C54 16 70 24 80 28Z" fill="#2ab4b4" opacity="0.25"/>
+        <path d="M80 28 C68 22 52 14 40 6" stroke="#2ab4b4" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+        <!-- Main right leaf -->
+        <path d="M80 28 C92 22 108 14 120 6 C106 16 90 24 80 28Z" fill="#2ab4b4" opacity="0.25"/>
+        <path d="M80 28 C92 22 108 14 120 6" stroke="#2ab4b4" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+        <!-- Upper left leaf -->
+        <path d="M80 16 C72 12 62 7 52 3 C62 9 73 14 80 16Z" fill="#0f2a4d" opacity="0.15"/>
+        <path d="M80 16 C72 12 62 7 52 3" stroke="#0f2a4d" stroke-width="0.8" stroke-linecap="round" opacity="0.3"/>
+        <!-- Upper right leaf -->
+        <path d="M80 16 C88 12 98 7 108 3 C98 9 87 14 80 16Z" fill="#0f2a4d" opacity="0.15"/>
+        <path d="M80 16 C88 12 98 7 108 3" stroke="#0f2a4d" stroke-width="0.8" stroke-linecap="round" opacity="0.3"/>
+        <!-- Lower left leaf -->
+        <path d="M80 40 C64 34 48 28 34 22 C50 30 66 37 80 40Z" fill="#2ab4b4" opacity="0.18"/>
+        <path d="M80 40 C64 34 48 28 34 22" stroke="#2ab4b4" stroke-width="0.8" stroke-linecap="round" opacity="0.35"/>
+        <!-- Lower right leaf -->
+        <path d="M80 40 C96 34 112 28 126 22 C110 30 94 37 80 40Z" fill="#2ab4b4" opacity="0.18"/>
+        <path d="M80 40 C96 34 112 28 126 22" stroke="#2ab4b4" stroke-width="0.8" stroke-linecap="round" opacity="0.35"/>
+        <!-- Tiny berries -->
+        <circle cx="40" cy="5.5" r="2" fill="#2ab4b4" opacity="0.4"/>
+        <circle cx="120" cy="5.5" r="2" fill="#2ab4b4" opacity="0.4"/>
+        <circle cx="52" cy="2.5" r="1.5" fill="#0f2a4d" opacity="0.25"/>
+        <circle cx="108" cy="2.5" r="1.5" fill="#0f2a4d" opacity="0.25"/>
+      </svg>
+    </div>
+
+    <!-- Salutation -->
+    <p class="font-display text-navy-500 text-sm mb-6" style="font-style:italic;">Dear [Patient name],</p>
+
+    <!-- Letter body -->
+    <div style="font-size:15px;line-height:1.9;color:#2d4155;">
+      <p style="margin-bottom:18px;">
+        Thank you for choosing Wisdom Surgery Clinic. Whether you've been referred by your GP, your dentist, or found your way to us another way — I'm genuinely glad you're here.
+      </p>
+      <p style="margin-bottom:18px;">
+        I know that the prospect of oral or maxillofacial surgery can bring with it a mix of feelings — uncertainty, questions, and sometimes a little apprehension. I want you to know from the outset that your care here will be thoughtful, transparent, and entirely centred around you.
+      </p>
+      <p style="margin-bottom:18px;">
+        My approach is straightforward: I take the time to understand your concerns, explain your options clearly, and work alongside you at every step. I won't recommend anything unless it's genuinely the right choice for you.
+      </p>
+      <p style="margin-bottom:32px;">
+        Before your first appointment, I'd encourage you to complete the patient registration form and take a few moments to review our practice policies — it helps us make the most of our time together so we can focus on what matters most.
+      </p>
+    </div>
+
+    <!-- Signature block -->
+    <div style="border-top:1px solid rgba(42,180,180,0.15);padding-top:28px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+      <div>
+        <p style="font-size:13px;color:#7aa0c6;margin-bottom:8px;">With warmth,</p>
+        <p class="signature-text">Dr Anna Raymond</p>
+        <p style="font-size:13px;color:#4a6274;margin-top:4px;">Oral &amp; Maxillofacial Surgeon<br>
+        <span style="color:#2ab4b4;">Wisdom Surgery Clinic</span></p>
+      </div>
+      <img src="brand_assets/WisdomSurgery_Logo_Circle.PNG" alt="" style="width:52px;height:52px;opacity:0.18;filter:brightness(0);" />
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INFO CARDS ═══ -->
+<section style="background:linear-gradient(160deg,#f0fbfb 0%,#e8f7f7 100%);padding:64px 24px;">
+  <div class="max-w-4xl mx-auto">
+
+    <!-- Section heading -->
+    <div class="leaf-divider mb-10">
+      <svg viewBox="0 0 32 20" fill="none" style="width:32px;flex-shrink:0;">
+        <path d="M16 18 C12 14 6 10 2 4 C8 10 14 15 16 18Z" fill="#2ab4b4" opacity="0.4"/>
+        <path d="M16 18 C20 14 26 10 30 4 C24 10 18 15 16 18Z" fill="#2ab4b4" opacity="0.4"/>
+        <line x1="16" y1="2" x2="16" y2="18" stroke="#2ab4b4" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+      </svg>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- What to bring -->
+      <div class="info-card p-6">
+        <div style="width:36px;height:36px;background:rgba(42,180,180,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-navy-800 text-base mb-3" style="letter-spacing:-0.01em;">What to bring</h3>
+        <ul style="font-size:13.5px;color:#4a6274;line-height:2;list-style:none;padding:0;margin:0;">
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#2ab4b4;font-size:10px;">&#9670;</span> Your referral letter</li>
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#2ab4b4;font-size:10px;">&#9670;</span> Medicare &amp; health fund card</li>
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#2ab4b4;font-size:10px;">&#9670;</span> Current medications list</li>
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#2ab4b4;font-size:10px;">&#9670;</span> Any existing X-rays or scans</li>
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#2ab4b4;font-size:10px;">&#9670;</span> Reading glasses if needed</li>
+        </ul>
+      </div>
+
+      <!-- What to expect -->
+      <div class="info-card navy-top p-6">
+        <div style="width:36px;height:36px;background:rgba(15,42,77,0.07);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          <svg class="w-5 h-5" fill="none" stroke="#0f2a4d" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-navy-800 text-base mb-3" style="letter-spacing:-0.01em;">Your first visit</h3>
+        <ul style="font-size:13.5px;color:#4a6274;line-height:2;list-style:none;padding:0;margin:0;">
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#0f2a4d;font-size:10px;">&#9670;</span> Allow 30–45 minutes</li>
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#0f2a4d;font-size:10px;">&#9670;</span> Dr Raymond reviews your history</li>
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#0f2a4d;font-size:10px;">&#9670;</span> A thorough clinical examination</li>
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#0f2a4d;font-size:10px;">&#9670;</span> Your options explained clearly</li>
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#0f2a4d;font-size:10px;">&#9670;</span> Written fee estimate provided</li>
+        </ul>
+      </div>
+
+      <!-- Good to know -->
+      <div class="info-card gold-top p-6">
+        <div style="width:36px;height:36px;background:rgba(176,154,110,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          <svg class="w-5 h-5" fill="none" stroke="#8a7550" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-navy-800 text-base mb-3" style="letter-spacing:-0.01em;">Good to know</h3>
+        <ul style="font-size:13.5px;color:#4a6274;line-height:2;list-style:none;padding:0;margin:0;">
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#b09a6e;font-size:10px;">&#9670;</span> No decisions required on the day</li>
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#b09a6e;font-size:10px;">&#9670;</span> Bring a support person if you'd like</li>
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#b09a6e;font-size:10px;">&#9670;</span> Questions are always welcome</li>
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#b09a6e;font-size:10px;">&#9670;</span> We confirm by SMS &amp; email</li>
+          <li style="display:flex;align-items:baseline;gap:8px;"><span style="color:#b09a6e;font-size:10px;">&#9670;</span> 48 hrs notice for cancellations</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NEXT STEPS ═══ -->
+<section style="background:#fff;padding:64px 24px;">
+  <div class="max-w-2xl mx-auto">
+    <p class="text-teal-600 font-semibold text-xs tracking-widest uppercase text-center mb-2">Before your visit</p>
+    <h2 class="font-display font-semibold text-navy-900 text-2xl text-center mb-10" style="letter-spacing:-0.02em;">Three simple steps</h2>
+
+    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:40px;">
+      <div class="step-pill">
+        <span style="width:28px;height:28px;min-width:28px;background:#2ab4b4;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#fff;">1</span>
+        <div>
+          <p style="font-size:14px;font-weight:500;color:#0f2a4d;margin:0 0 1px;">Complete your registration form</p>
+          <p style="font-size:12.5px;color:#7aa0c6;margin:0;">Takes about 10 minutes — helps us prepare for your visit.</p>
+        </div>
+        <a href="Patient Information.html#form" style="margin-left:auto;font-size:12px;font-weight:600;color:#2ab4b4;white-space:nowrap;text-decoration:none;">Open form &rarr;</a>
+      </div>
+
+      <div class="step-pill">
+        <span style="width:28px;height:28px;min-width:28px;background:#0f2a4d;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#fff;">2</span>
+        <div>
+          <p style="font-size:14px;font-weight:500;color:#0f2a4d;margin:0 0 1px;">Review our practice policies</p>
+          <p style="font-size:12.5px;color:#7aa0c6;margin:0;">Privacy, financial, and cancellation — good to read before your visit.</p>
+        </div>
+        <a href="Patient Information.html" style="margin-left:auto;font-size:12px;font-weight:600;color:#2ab4b4;white-space:nowrap;text-decoration:none;">View policies &rarr;</a>
+      </div>
+
+      <div class="step-pill" style="border-left-color:#b09a6e;">
+        <span style="width:28px;height:28px;min-width:28px;background:#b09a6e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#fff;">3</span>
+        <div>
+          <p style="font-size:14px;font-weight:500;color:#0f2a4d;margin:0 0 1px;">We'll be in touch to confirm</p>
+          <p style="font-size:12.5px;color:#7aa0c6;margin:0;">You'll receive an SMS and email reminder before your appointment.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact nudge -->
+    <div style="text-align:center;padding:28px;background:linear-gradient(135deg,rgba(42,180,180,0.06) 0%,rgba(9,29,56,0.04) 100%);border:1px solid rgba(42,180,180,0.12);border-radius:4px;">
+      <p style="font-size:14px;color:#4a6274;margin-bottom:10px;">Have a question before your visit?</p>
+      <div style="display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;">
+        <a href="tel:1300111324" style="font-size:14px;font-weight:600;color:#0f2a4d;text-decoration:none;">&#9742; 1300 111 324</a>
+        <span style="color:#d5e1ee;">|</span>
+        <a href="mailto:hello@wisdomsurgery.clinic" style="font-size:14px;font-weight:600;color:#2ab4b4;text-decoration:none;">hello@wisdomsurgery.clinic</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="bg-navy-900 text-navy-200 py-12">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+      <div>
+        <img src="brand_assets/WisdomSurgery_Logo_Horizontal_Reversed-Picsart-BackgroundRemover.png" alt="Wisdom Surgery Clinic" class="h-8 w-auto mb-4" />
+        <p class="text-navy-400 text-sm leading-relaxed">Oral &amp; Maxillofacial Surgery by Dr Anna Raymond. Specialist care with a personal touch.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-white text-sm mb-4 tracking-wide">For Our Patients</h4>
+        <div class="flex flex-col gap-2">
+          <span class="text-navy-600 text-sm">A Personal Welcome</span>
+          <a href="Patient Information.html#form" class="text-navy-400 text-sm hover:text-teal-400 transition-colors">New Patient Form</a>
+          <a href="Patient Information.html" class="text-navy-400 text-sm hover:text-teal-400 transition-colors">Practice Policies</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold text-white text-sm mb-4 tracking-wide">Contact</h4>
+        <div class="flex flex-col gap-2">
+          <a href="tel:1300111324" class="text-navy-400 text-sm hover:text-teal-400 transition-colors">1300 111 324</a>
+          <a href="mailto:hello@wisdomsurgery.clinic" class="text-navy-400 text-sm hover:text-teal-400 transition-colors">hello@wisdomsurgery.clinic</a>
+          <a href="payment.html" class="text-navy-400 text-sm hover:text-teal-400 transition-colors">Pay an invoice</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold text-white text-sm mb-4 tracking-wide">Consulting Locations</h4>
+        <div class="flex flex-col gap-3">
+          <div class="flex flex-col gap-0.5">
+            <a href="https://www.northwestprivatehospital.com.au/" target="_blank" rel="noopener" class="text-navy-300 text-sm hover:text-teal-400 transition-colors">North West Private Hospital</a>
+            <span class="text-navy-500 text-xs">Everton Park QLD</span>
+          </div>
+          <div class="flex flex-col gap-0.5">
+            <a href="https://www.cabooltureprivate.com.au/" target="_blank" rel="noopener" class="text-navy-300 text-sm hover:text-teal-400 transition-colors">Caboolture Private Hospital</a>
+            <span class="text-navy-500 text-xs">Caboolture QLD</span>
+          </div>
+          <div class="flex flex-col gap-0.5">
+            <a href="https://www.greenslopesprivate.com.au/" target="_blank" rel="noopener" class="text-navy-300 text-sm hover:text-teal-400 transition-colors">Greenslopes Private Hospital</a>
+            <span class="text-navy-500 text-xs">Greenslopes QLD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-navy-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-navy-500 text-xs">© 2026 Wisdom Surgery Clinic. All rights reserved.</p>
+      <img src="brand_assets/WisdomSurgery_Logo_Circle.PNG" alt="" class="w-8 h-8 opacity-30 brightness-0 invert" />
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+  toggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+</script>
+</body>
+</html>
