@@ -101,30 +101,8 @@
 </head>
 <body class="antialiased">
 
-<!-- ═══ LOGIN ═══ -->
-<div id="login-screen" class="login-bg">
-  <div style="width:100%;max-width:360px;">
-    <div class="text-center mb-7">
-      <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-3" style="background:linear-gradient(135deg,#2ab4b4,#1e4a7a);">
-        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-      </div>
-      <p class="font-display text-2xl font-semibold text-navy-900" style="letter-spacing:-0.01em;">Dr Anna's Schedule</p>
-      <p class="text-navy-400 text-sm mt-1">Wisdom Surgery Clinic — Staff Access</p>
-    </div>
-    <div class="login-card">
-      <div class="mb-5">
-        <label class="block text-sm font-medium text-navy-700 mb-2">Access code</label>
-        <input type="password" id="pw-input" placeholder="••••••••••••" onkeydown="if(event.key==='Enter')doLogin()" />
-        <p id="pw-error" class="text-red-500 text-xs mt-2 hidden">Incorrect access code.</p>
-      </div>
-      <button onclick="doLogin()" class="btn-primary w-full py-3 rounded-full font-semibold text-sm">Enter</button>
-    </div>
-    <p class="text-center text-navy-400 text-xs mt-5">© 2026 Wisdom Surgery Clinic · Internal use only</p>
-  </div>
-</div>
-
 <!-- ═══ MAIN APP ═══ -->
-<div id="app" class="hidden" style="min-height:100vh;display:flex;flex-direction:column;">
+<div id="app" style="min-height:100vh;display:flex;flex-direction:column;">
 
   <!-- Nav -->
   <header class="nav-glass sticky top-0 z-50">
@@ -196,41 +174,7 @@
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════
-// AUTH
-// ═══════════════════════════════════════════════════
-const ACCESS_CODE = 'WisdomTeam2026'; // ← change before going live
-
-function doLogin(){
-  const v=document.getElementById('pw-input').value;
-  const err=document.getElementById('pw-error');
-  if(v===ACCESS_CODE){
-    sessionStorage.setItem('wsSchedAuth','1');
-    document.getElementById('login-screen').style.display='none';
-    const app=document.getElementById('app');
-    app.classList.remove('hidden');
-    app.style.display='flex';
-    init();
-  } else {
-    err.classList.remove('hidden');
-    document.getElementById('pw-input').value='';
-    document.getElementById('pw-input').classList.add('shake');
-    setTimeout(()=>document.getElementById('pw-input').classList.remove('shake'),400);
-  }
-}
-function doLogout(){
-  sessionStorage.removeItem('wsSchedAuth');
-  location.reload();
-}
-window.addEventListener('DOMContentLoaded',()=>{
-  if(sessionStorage.getItem('wsSchedAuth')==='1'){
-    document.getElementById('login-screen').style.display='none';
-    const app=document.getElementById('app');
-    app.classList.remove('hidden');
-    app.style.display='flex';
-    init();
-  }
-});
+window.addEventListener('DOMContentLoaded', init);
 
 // ═══════════════════════════════════════════════════
 // SCHEDULE DATA
