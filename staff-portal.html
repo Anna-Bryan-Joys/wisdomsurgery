@@ -215,8 +215,8 @@
 
       <!-- Logo / header -->
       <div class="flex items-center gap-5 mb-8">
-        <div class="flex-shrink-0 rounded-2xl overflow-hidden shadow-lg" style="background:#091d38;padding:6px;">
-          <img src="brand_assets/Wisdomsurgery Clinic logo - stamp version-Picsart-BackgroundRemover.PNG" alt="Wisdom Surgery Clinic" class="h-20 w-20 object-contain" />
+        <div class="flex-shrink-0 rounded-full overflow-hidden shadow-lg" style="width:80px;height:80px;">
+          <img src="brand_assets/WisdomSurgery_Logo_Circle.PNG" alt="Wisdom Surgery Clinic" class="w-full h-full object-cover" />
         </div>
         <div>
           <p class="font-display text-xl font-semibold text-navy-900 leading-tight" style="letter-spacing:-0.01em">Wisdom Surgery Clinic</p>
@@ -293,7 +293,7 @@
         <div>
           <p class="text-teal-400 text-xs font-semibold tracking-widest uppercase mb-1">Good to see you</p>
           <h1 class="font-display text-2xl md:text-3xl font-semibold text-white" style="letter-spacing:-0.02em">
-            Welcome to the team hub. <em class="not-italic text-teal-400">Let's have a great day.</em>
+            Welcome to the team hub. <em class="not-italic text-teal-400">What a beautiful day it is.</em>
           </h1>
           <p class="text-navy-300 text-sm mt-2" id="portal-date"></p>
         </div>
@@ -301,15 +301,15 @@
         <div class="flex gap-3 flex-wrap">
           <div class="stat-pill text-center" style="background:rgba(42,180,180,0.12); border-radius:12px; padding:0.65rem 1.1rem; border:1px solid rgba(42,180,180,0.2);">
             <p class="text-teal-300 text-xs font-medium">Today's surgeries</p>
-            <p class="text-white text-xl font-semibold font-display">3</p>
+            <p class="text-white text-xl font-semibold font-display" id="stat-surgeries">—</p>
           </div>
           <div class="stat-pill text-center" style="background:rgba(42,180,180,0.12); border-radius:12px; padding:0.65rem 1.1rem; border:1px solid rgba(42,180,180,0.2);">
             <p class="text-teal-300 text-xs font-medium">Consultations</p>
-            <p class="text-white text-xl font-semibold font-display">5</p>
+            <p class="text-white text-xl font-semibold font-display" id="stat-consults">—</p>
           </div>
           <div class="stat-pill text-center" style="background:rgba(42,180,180,0.12); border-radius:12px; padding:0.65rem 1.1rem; border:1px solid rgba(42,180,180,0.2);">
-            <p class="text-teal-300 text-xs font-medium">Notes</p>
-            <p class="text-white text-xl font-semibold font-display">2</p>
+            <p class="text-teal-300 text-xs font-medium">Announcements</p>
+            <p class="text-white text-xl font-semibold font-display">1</p>
           </div>
         </div>
       </div>
@@ -707,7 +707,8 @@
           </div>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Top row: Dr Anna | Practice Manager | Emergency -->
+        <div class="grid sm:grid-cols-3 gap-4 mb-6">
 
           <!-- Dr Anna -->
           <div class="card rounded-2xl p-5">
@@ -726,7 +727,12 @@
               </div>
               <div class="flex items-center gap-2 text-xs text-navy-500">
                 <svg class="w-3.5 h-3.5 text-teal-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                <a href="mailto:DrAnnaRaymond@wisdomsurgery.clinic" class="text-teal-600 hover:text-teal-700">DrAnnaRaymond@wisdomsurgery.clinic</a>
+                <a href="mailto:DrAnnaRaymond@wisdomsurgery.clinic" class="text-teal-600 hover:text-teal-700 break-all">DrAnnaRaymond@wisdomsurgery.clinic</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Practice Manager -->
           <div class="card rounded-2xl p-5">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-11 h-11 rounded-full flex items-center justify-center font-display font-semibold text-sm flex-shrink-0" style="background: rgba(21,57,100,0.12); color:#153964;">PM</div>
@@ -744,61 +750,69 @@
               <div class="flex items-center gap-2 text-xs text-navy-500">
                 <svg class="w-3.5 h-3.5 text-teal-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 <a href="mailto:Admin@wisdomsurgery.clinic" class="text-teal-600 hover:text-teal-700">Admin@wisdomsurgery.clinic</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Emergency & afterhours -->
+          <div class="card rounded-2xl p-5">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(220,38,38,0.10);">
+                <svg class="w-5 h-5" style="color:#dc2626;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-navy-800 text-sm">Emergency &amp; Afterhours</p>
+                <p class="text-red-500 text-xs">Urgent contacts</p>
+              </div>
+            </div>
+            <hr class="section-divider" />
+            <div class="flex flex-col gap-2.5">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-navy-500">Emergency (AU)</span>
+                <a href="tel:000" class="font-bold text-red-600 hover:text-red-700">000</a>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-navy-500">Poison information</span>
+                <a href="tel:131126" class="font-semibold text-teal-600 hover:text-teal-700">13 11 26</a>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-navy-500">GPH switchboard</span>
+                <a href="tel:0731942222" class="font-semibold text-teal-600 hover:text-teal-700">(07) 3194 2222</a>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-navy-500">After-hours urgent</span>
+                <a href="tel:+61409630040" class="font-semibold text-teal-600 hover:text-teal-700">0409 630 040</a>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <!-- Anaesthetist Directory -->
-        <div class="mt-8">
-          <h3 class="font-display font-semibold text-navy-800 text-base mb-4">Anaesthetists</h3>
+        <!-- Anaesthetist Team — full width -->
+        <div>
+          <h3 class="font-display font-semibold text-navy-800 text-base mb-4">Anaesthetist Team</h3>
           <div class="card rounded-2xl p-5 overflow-x-auto">
             <table class="w-full text-sm">
               <thead>
                 <tr class="text-left border-b" style="border-color:rgba(42,180,180,0.15);">
-                  <th class="pb-3 pr-4 font-semibold text-navy-700 text-xs uppercase tracking-wider">Name</th>
-                  <th class="pb-3 pr-4 font-semibold text-navy-700 text-xs uppercase tracking-wider">Practice</th>
-                  <th class="pb-3 pr-4 font-semibold text-navy-700 text-xs uppercase tracking-wider">Location</th>
+                  <th class="pb-3 pr-6 font-semibold text-navy-700 text-xs uppercase tracking-wider">Name</th>
+                  <th class="pb-3 pr-6 font-semibold text-navy-700 text-xs uppercase tracking-wider">Practice</th>
+                  <th class="pb-3 pr-6 font-semibold text-navy-700 text-xs uppercase tracking-wider">Location</th>
                   <th class="pb-3 font-semibold text-navy-700 text-xs uppercase tracking-wider">Phone</th>
                 </tr>
               </thead>
               <tbody class="text-navy-600">
-                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-4 font-medium">Dr Nicola Acworth</td><td class="py-2.5 pr-4">Wickham Terrace Anaesthesia</td><td class="py-2.5 pr-4">Fortitude Valley</td><td class="py-2.5"><a href="tel:0738310383" class="text-teal-600 hover:text-teal-700">(07) 3831 0383</a></td></tr>
-                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-4 font-medium">Dr Catherine Brooks</td><td class="py-2.5 pr-4">Wickham Terrace Anaesthesia</td><td class="py-2.5 pr-4">Fortitude Valley</td><td class="py-2.5"><a href="tel:0732389207" class="text-teal-600 hover:text-teal-700">(07) 3238 9207</a></td></tr>
-                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-4 font-medium">Dr Kenneth Lee</td><td class="py-2.5 pr-4">Peninsula Anaesthetics</td><td class="py-2.5 pr-4">Kippa-Ring</td><td class="py-2.5"><a href="tel:0738894406" class="text-teal-600 hover:text-teal-700">(07) 3889 4406</a></td></tr>
-                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-4 font-medium">Dr George Pang</td><td class="py-2.5 pr-4">Wickham Terrace Anaesthesia</td><td class="py-2.5 pr-4">Fortitude Valley</td><td class="py-2.5"><a href="tel:0738310383" class="text-teal-600 hover:text-teal-700">(07) 3831 0383</a></td></tr>
-                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-4 font-medium">Dr Christine Pirrone</td><td class="py-2.5 pr-4">Wickham Terrace Anaesthesia</td><td class="py-2.5 pr-4">Fortitude Valley</td><td class="py-2.5"><a href="tel:0738310383" class="text-teal-600 hover:text-teal-700">(07) 3831 0383</a></td></tr>
-                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-4 font-medium">Dr Susannah Sherlock</td><td class="py-2.5 pr-4">Wesley Hyperbaric</td><td class="py-2.5 pr-4">Auchenflower</td><td class="py-2.5"><a href="tel:0733716033" class="text-teal-600 hover:text-teal-700">(07) 3371 6033</a></td></tr>
-                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-4 font-medium">Dr Julia Slykerman</td><td class="py-2.5 pr-4">Wickham Terrace Anaesthesia</td><td class="py-2.5 pr-4">Fortitude Valley</td><td class="py-2.5"><a href="tel:0738310383" class="text-teal-600 hover:text-teal-700">(07) 3831 0383</a></td></tr>
-                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-4 font-medium">Dr Steve Tavakol</td><td class="py-2.5 pr-4">Wickham Terrace Anaesthesia</td><td class="py-2.5 pr-4">Fortitude Valley</td><td class="py-2.5"><a href="tel:0738310383" class="text-teal-600 hover:text-teal-700">(07) 3831 0383</a></td></tr>
-                <tr><td class="py-2.5 pr-4 font-medium">Dr Torben Wentrup</td><td class="py-2.5 pr-4">Wesley Anaesthesia</td><td class="py-2.5 pr-4">Auchenflower</td><td class="py-2.5"><a href="tel:0733770500" class="text-teal-600 hover:text-teal-700">(07) 3377 0500</a></td></tr>
+                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-6 font-medium">Dr Nicola Acworth</td><td class="py-2.5 pr-6">Wickham Terrace Anaesthesia</td><td class="py-2.5 pr-6">Fortitude Valley</td><td class="py-2.5"><a href="tel:0738310383" class="text-teal-600 hover:text-teal-700">(07) 3831 0383</a></td></tr>
+                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-6 font-medium">Dr Catherine Brooks</td><td class="py-2.5 pr-6">Wickham Terrace Anaesthesia</td><td class="py-2.5 pr-6">Fortitude Valley</td><td class="py-2.5"><a href="tel:0732389207" class="text-teal-600 hover:text-teal-700">(07) 3238 9207</a></td></tr>
+                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-6 font-medium">Dr Kenneth Lee</td><td class="py-2.5 pr-6">Peninsula Anaesthetics</td><td class="py-2.5 pr-6">Kippa-Ring</td><td class="py-2.5"><a href="tel:0738894406" class="text-teal-600 hover:text-teal-700">(07) 3889 4406</a></td></tr>
+                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-6 font-medium">Dr George Pang</td><td class="py-2.5 pr-6">Wickham Terrace Anaesthesia</td><td class="py-2.5 pr-6">Fortitude Valley</td><td class="py-2.5"><a href="tel:0738310383" class="text-teal-600 hover:text-teal-700">(07) 3831 0383</a></td></tr>
+                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-6 font-medium">Dr Christine Pirrone</td><td class="py-2.5 pr-6">Wickham Terrace Anaesthesia</td><td class="py-2.5 pr-6">Fortitude Valley</td><td class="py-2.5"><a href="tel:0738310383" class="text-teal-600 hover:text-teal-700">(07) 3831 0383</a></td></tr>
+                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-6 font-medium">Dr Susannah Sherlock</td><td class="py-2.5 pr-6">Wesley Hyperbaric</td><td class="py-2.5 pr-6">Auchenflower</td><td class="py-2.5"><a href="tel:0733716033" class="text-teal-600 hover:text-teal-700">(07) 3371 6033</a></td></tr>
+                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-6 font-medium">Dr Julia Slykerman</td><td class="py-2.5 pr-6">Wickham Terrace Anaesthesia</td><td class="py-2.5 pr-6">Fortitude Valley</td><td class="py-2.5"><a href="tel:0738310383" class="text-teal-600 hover:text-teal-700">(07) 3831 0383</a></td></tr>
+                <tr class="border-b" style="border-color:rgba(42,180,180,0.08);"><td class="py-2.5 pr-6 font-medium">Dr Steve Tavakol</td><td class="py-2.5 pr-6">Wickham Terrace Anaesthesia</td><td class="py-2.5 pr-6">Fortitude Valley</td><td class="py-2.5"><a href="tel:0738310383" class="text-teal-600 hover:text-teal-700">(07) 3831 0383</a></td></tr>
+                <tr><td class="py-2.5 pr-6 font-medium">Dr Torben Wentrup</td><td class="py-2.5 pr-6">Wesley Anaesthesia</td><td class="py-2.5 pr-6">Auchenflower</td><td class="py-2.5"><a href="tel:0733770500" class="text-teal-600 hover:text-teal-700">(07) 3377 0500</a></td></tr>
               </tbody>
             </table>
-          </div>
-        </div>
-
-        <!-- Emergency contacts -->
-        <div class="mt-8">
-          <h3 class="font-display font-semibold text-navy-800 text-base mb-4">Emergency &amp; afterhours numbers</h3>
-          <div class="card rounded-2xl p-5 max-w-lg">
-            <div class="flex flex-col gap-3">
-              <div class="flex items-center justify-between text-sm">
-                <span class="text-navy-600">Emergency (Australia)</span>
-                <a href="tel:000" class="font-semibold text-red-600 hover:text-red-700">000</a>
-              </div>
-              <hr class="section-divider" style="margin:0.25rem 0;" />
-              <div class="flex items-center justify-between text-sm">
-                <span class="text-navy-600">Poison information</span>
-                <a href="tel:131126" class="font-semibold text-teal-600 hover:text-teal-700">13 11 26</a>
-              </div>
-              <hr class="section-divider" style="margin:0.25rem 0;" />
-              <div class="flex items-center justify-between text-sm">
-                <span class="text-navy-600">Greenslopes Private Hospital switchboard</span>
-                <a href="tel:0731942222" class="font-semibold text-teal-600 hover:text-teal-700">(07) 3194 2222</a>
-              </div>
-              <hr class="section-divider" style="margin:0.25rem 0;" />
-              <div class="flex items-center justify-between text-sm">
-                <span class="text-navy-600">After-hours patient urgent line</span>
-                <a href="tel:+61409630040" class="font-semibold text-teal-600 hover:text-teal-700">0409 630 040</a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -853,7 +867,7 @@
       portal.classList.remove('hidden');
       portal.style.display = 'flex';
       setDate();
-      setTimeout(renderWeekGrid, 0);
+      setTimeout(() => { computeTodayStats(); renderWeekGrid(); }, 0);
     }
 
     // Check session on load
@@ -869,6 +883,31 @@
       if (!el) return;
       const d = new Date();
       el.textContent = d.toLocaleDateString('en-AU', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+    }
+
+    // ── Today's stats (computed from schedule data) ───────────
+    function computeTodayStats() {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      let surgeries = 0, consults = 0;
+      for (const mData of Object.values(SCHEDULE_MONTHS)) {
+        for (const week of (mData.weeks || [])) {
+          for (const day of week) {
+            if (day.hol || !day.d) continue;
+            const d = parseSchedDate(day.d);
+            d.setHours(0, 0, 0, 0);
+            if (d.getTime() !== today.getTime()) continue;
+            if (day.am?.type === 'Surgery') surgeries++;
+            if (day.pm?.type === 'Surgery') surgeries++;
+            if (day.am?.type === 'Consult' || day.am?.type === 'Telehealth') consults++;
+            if (day.pm?.type === 'Consult' || day.pm?.type === 'Telehealth') consults++;
+          }
+        }
+      }
+      const sEl = document.getElementById('stat-surgeries');
+      const cEl = document.getElementById('stat-consults');
+      if (sEl) sEl.textContent = surgeries > 0 ? surgeries : '0';
+      if (cEl) cEl.textContent = consults > 0 ? consults : '0';
     }
 
     // ── Tabs ─────────────────────────────────────────────────
@@ -1031,6 +1070,16 @@
         'X-WR-CALNAME:Dr Anna Raymond – 2026 Schedule',
         'X-WR-TIMEZONE:Australia/Brisbane',
         'X-WR-CALDESC:Wisdom Surgery Clinic – Dr Anna Raymond clinical schedule April–December 2026. Reference only. For bookings use Gentu.',
+        'BEGIN:VTIMEZONE',
+        'TZID:Australia/Brisbane',
+        'X-LIC-LOCATION:Australia/Brisbane',
+        'BEGIN:STANDARD',
+        'TZOFFSETFROM:+1000',
+        'TZOFFSETTO:+1000',
+        'TZNAME:AEST',
+        'DTSTART:19700101T000000',
+        'END:STANDARD',
+        'END:VTIMEZONE',
       ];
 
       for (const [mKey, mData] of Object.entries(SCHEDULE_MONTHS)) {
@@ -1039,10 +1088,8 @@
             const dayDate = parseSchedDate(day.d);
 
             if (day.hol) {
-              // Public holiday – all-day event
               uid++;
               const dtstart = `${dayDate.getFullYear()}${String(dayDate.getMonth()+1).padStart(2,'0')}${String(dayDate.getDate()).padStart(2,'0')}`;
-              // All-day DTEND is next day
               const nextDay = new Date(dayDate); nextDay.setDate(nextDay.getDate() + 1);
               const dtend = `${nextDay.getFullYear()}${String(nextDay.getMonth()+1).padStart(2,'0')}${String(nextDay.getDate()).padStart(2,'0')}`;
               lines.push(
@@ -1050,8 +1097,9 @@
                 foldLine(`UID:ws-${uid}-hol@wisdomsurgery.clinic`),
                 foldLine(`DTSTART;VALUE=DATE:${dtstart}`),
                 foldLine(`DTEND;VALUE=DATE:${dtend}`),
-                foldLine(`SUMMARY:🏖 ${icsText(day.hol)} – Clinic Closed`),
+                foldLine(`SUMMARY:${icsText(day.hol)} – Clinic Closed`),
                 'CATEGORIES:Holiday',
+                'STATUS:CONFIRMED',
                 'TRANSP:TRANSPARENT',
                 'END:VEVENT'
               );
@@ -1062,17 +1110,18 @@
             if (day.am) {
               uid++;
               const locFull = LOC_NAMES[day.am.loc] || day.am.loc;
-              const emoji = day.am.type === 'Surgery' ? '🔪' : day.am.type === 'Consult' ? '🩺' : day.am.type === 'Travel' ? '✈️' : day.am.type === 'Telehealth' ? '💻' : '📋';
-              const summary = `${emoji} AM · ${day.am.type}${day.am.loc ? ' @ ' + day.am.loc : ''}${day.am.note ? ' – ' + day.am.note : ''}`;
+              const summary = `AM: ${day.am.type} at ${day.am.loc}${day.am.note ? ' - ' + day.am.note : ''}`;
               lines.push(
                 'BEGIN:VEVENT',
                 foldLine(`UID:ws-${uid}-am@wisdomsurgery.clinic`),
-                foldLine(`DTSTART:${icsDate(dayDate, 8, 0)}`),
-                foldLine(`DTEND:${icsDate(dayDate, 12, 30)}`),
+                foldLine(`DTSTART;TZID=Australia/Brisbane:${icsDate(dayDate, 8, 0)}`),
+                foldLine(`DTEND;TZID=Australia/Brisbane:${icsDate(dayDate, 12, 30)}`),
                 foldLine(`SUMMARY:${icsText(summary)}`),
                 foldLine(`LOCATION:${icsText(locFull)}`),
                 foldLine(`DESCRIPTION:Dr Anna Raymond – ${icsText(day.am.type)}${day.am.note ? '\\n' + icsText(day.am.note) : ''}\\nLocation: ${icsText(locFull)}\\n\\nReference only. Book via Gentu: https://gentu.io`),
                 'CATEGORIES:Dr Anna Raymond',
+                'STATUS:CONFIRMED',
+                'TRANSP:OPAQUE',
                 'END:VEVENT'
               );
             }
@@ -1081,17 +1130,18 @@
             if (day.pm) {
               uid++;
               const locFull = LOC_NAMES[day.pm.loc] || day.pm.loc;
-              const emoji = day.pm.type === 'Surgery' ? '🔪' : day.pm.type === 'Consult' ? '🩺' : day.pm.type === 'Travel' ? '✈️' : day.pm.type === 'Telehealth' ? '💻' : '📋';
-              const summary = `${emoji} PM · ${day.pm.type}${day.pm.loc ? ' @ ' + day.pm.loc : ''}${day.pm.note ? ' – ' + day.pm.note : ''}`;
+              const summary = `PM: ${day.pm.type} at ${day.pm.loc}${day.pm.note ? ' - ' + day.pm.note : ''}`;
               lines.push(
                 'BEGIN:VEVENT',
                 foldLine(`UID:ws-${uid}-pm@wisdomsurgery.clinic`),
-                foldLine(`DTSTART:${icsDate(dayDate, 13, 0)}`),
-                foldLine(`DTEND:${icsDate(dayDate, 17, 30)}`),
+                foldLine(`DTSTART;TZID=Australia/Brisbane:${icsDate(dayDate, 13, 0)}`),
+                foldLine(`DTEND;TZID=Australia/Brisbane:${icsDate(dayDate, 17, 30)}`),
                 foldLine(`SUMMARY:${icsText(summary)}`),
                 foldLine(`LOCATION:${icsText(locFull)}`),
                 foldLine(`DESCRIPTION:Dr Anna Raymond – ${icsText(day.pm.type)}${day.pm.note ? '\\n' + icsText(day.pm.note) : ''}\\nLocation: ${icsText(locFull)}\\n\\nReference only. Book via Gentu: https://gentu.io`),
                 'CATEGORIES:Dr Anna Raymond',
+                'STATUS:CONFIRMED',
+                'TRANSP:OPAQUE',
                 'END:VEVENT'
               );
             }
