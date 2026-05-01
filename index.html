@@ -121,10 +121,7 @@
 
     /* Waiting room image overlay */
     .room-overlay::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(42,180,180,0.15) 0%, rgba(21,55,100,0.1) 100%);
-      mix-blend-mode: multiply;
+      content: none;
     }
 
     /* FAQ accordion */
@@ -345,7 +342,7 @@
         <p class="text-navy-600 text-base leading-relaxed mb-3 max-w-md" style="line-height:1.75">
           This practice was created with a clear intention: to offer surgical care that is precise, individualised, and deeply considered.
         </p>
-        <p class="text-navy-600 text-lg leading-relaxed mb-8 max-w-md" style="line-height:1.75">
+        <p class="text-navy-600 text-base leading-relaxed mb-8 max-w-md" style="line-height:1.75">
           Surgery is rarely just a procedure — it represents trust, vulnerability, and hope. We are walking this together.
         </p>
         <div class="flex flex-wrap gap-4">
@@ -395,7 +392,6 @@
             alt="Wisdom Surgery Clinic waiting room"
             class="w-full h-full object-cover object-center"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/30 to-transparent"></div>
         </div>
       </div>
 
