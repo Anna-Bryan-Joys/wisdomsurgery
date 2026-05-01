@@ -56,13 +56,7 @@
       box-shadow:0 8px 48px rgba(9,29,56,0.07),0 2px 12px rgba(42,180,180,0.08);
       border-radius:2px;
     }
-    .letter-card::before{
-      content:'';
-      display:block;
-      height:4px;
-      background:linear-gradient(90deg,#2ab4b4 0%,#0f2a4d 100%);
-      border-radius:2px 2px 0 0;
-    }
+    .letter-card::before{ display:none; }
 
     /* Info cards */
     .info-card{
@@ -130,6 +124,14 @@
 
 <!-- ═══ A PERSONAL WELCOME ═══ -->
 <section style="background:#f8fdfd;padding:48px 24px 72px;">
+
+  <!-- Welcome heading above card -->
+  <div style="text-align:center;max-width:640px;margin:0 auto 32px;">
+    <p style="font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:#2ab4b4;margin-bottom:10px;">About Your Surgeon</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:500;color:#0f2a4d;letter-spacing:-0.02em;line-height:1.2;margin-bottom:12px;">A Personal Welcome</h2>
+    <p style="font-size:15px;color:#4a6274;line-height:1.75;margin:0;">From Dr Anna Raymond and the team at Wisdom Surgery Clinic — we're glad you're here.</p>
+  </div>
+
   <div class="letter-card max-w-2xl mx-auto" style="padding:0 0 44px;overflow:hidden;">
 
     <!-- Full-width photo -->
@@ -137,12 +139,6 @@
       <img src="brand_assets/dr-anna-consult.png" alt="Dr Anna Raymond" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;" />
     </div>
 
-    <!-- About Your Surgeon header -->
-    <div style="padding:32px 52px 28px;border-bottom:1px solid rgba(42,180,180,0.15);">
-      <p style="font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#2ab4b4;margin-bottom:6px;">About Your Surgeon</p>
-      <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:500;color:#0f2a4d;letter-spacing:-0.01em;line-height:1.25;margin-bottom:6px;">A Personal Welcome</h2>
-      <p style="font-size:13px;color:#4a6274;margin:0;line-height:1.5;">Dr Anna Raymond &nbsp;·&nbsp; <span style="color:#2ab4b4;">Oral &amp; Maxillofacial Surgeon</span></p>
-    </div>
 
     <div style="padding:0 52px;">
 
@@ -181,15 +177,6 @@
 <!-- ═══ DR RAYMOND'S JOURNEY ═══ -->
 <section style="background:linear-gradient(160deg,#f0fbfb 0%,#e8f7f7 100%);padding:72px 24px;">
   <div class="max-w-4xl mx-auto">
-
-    <!-- Leaf divider -->
-    <div class="leaf-divider mb-10">
-      <svg viewBox="0 0 32 20" fill="none" style="width:32px;flex-shrink:0;">
-        <path d="M16 18 C12 14 6 10 2 4 C8 10 14 15 16 18Z" fill="#2ab4b4" opacity="0.4"/>
-        <path d="M16 18 C20 14 26 10 30 4 C24 10 18 15 16 18Z" fill="#2ab4b4" opacity="0.4"/>
-        <line x1="16" y1="2" x2="16" y2="18" stroke="#2ab4b4" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
-      </svg>
-    </div>
 
     <!-- Heading -->
     <div style="text-align:center;margin-bottom:52px;">
