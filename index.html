@@ -273,6 +273,10 @@
               <svg class="w-3.5 h-3.5 opacity-40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
               Practice Policies
             </a>
+            <a href="#" onclick="heBookNow();return false;" class="nav-dropdown-item" style="color:#2BBFA4;font-weight:600;">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="opacity:0.7"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Book A Consult
+            </a>
             <a href="telehealth.html" class="nav-dropdown-item">
               <svg class="w-3.5 h-3.5 opacity-40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
               Telehealth
@@ -316,6 +320,7 @@
         <a href="Patient Information.html#form" class="nav-link py-1 pl-4" style="color:#4a6274;font-size:0.85rem" onclick="closeMobileMenu()">↳ New Patient Form</a>
         <a href="Patient Information.html#forms" class="nav-link py-1 pl-4" style="color:#4a6274;font-size:0.85rem" onclick="closeMobileMenu()">↳ Patient Forms</a>
         <a href="Patient Information.html" class="nav-link py-1 pl-4" style="color:#4a6274;font-size:0.85rem" onclick="closeMobileMenu()">↳ Practice Policies</a>
+        <a href="#" class="nav-link py-1 pl-4" style="color:#2BBFA4;font-size:0.85rem;font-weight:600;" onclick="heBookNow();closeMobileMenu();return false;">↳ Book A Consult</a>
         <a href="telehealth.html" class="nav-link py-1 pl-4" style="color:#4a6274;font-size:0.85rem" onclick="closeMobileMenu()">↳ Telehealth</a>
         <a href="#services" class="nav-link py-1" onclick="closeMobileMenu()">Services</a>
         <a href="#about"    class="nav-link py-1" onclick="closeMobileMenu()">About</a>
@@ -731,6 +736,7 @@
         <div>
           <img src="brand_assets/WisdomSurgery_Logo_Horizontal_Reversed-Picsart-BackgroundRemover.png" alt="Wisdom Surgery Clinic" class="h-8 w-auto mb-4" />
           <p class="text-navy-400 text-sm leading-relaxed">Oral & Maxillofacial Surgery by Dr Anna Raymond. Specialist care with a personal touch.</p>
+          <button onclick="heBookNow()" class="mt-4 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-opacity hover:opacity-90" style="background:linear-gradient(135deg,#2BBFA4,#2E6DB4);">Book A Consultation</button>
         </div>
         <div>
           <h4 class="font-semibold text-white text-sm mb-4 tracking-wide">For Our Patients</h4>
@@ -781,6 +787,19 @@
       </div>
     </div>
   </footer>
+
+  <!-- Health Engine booking widget -->
+  <script data-he-id="102322" data-alignment="right" data-he-fixed="true" data-background-color="#2BBFA4" src="https://healthengine.com.au/webplugin/appointments.js"></script>
+
+  <script>
+    function heBookNow() {
+      // Trigger the Health Engine floating widget button
+      const btn = document.querySelector('a[href*="healthengine.com.au/book"], .he-book-now, #he-appointment-btn, [class*="he-"] a');
+      if (btn) { btn.click(); return; }
+      // Fallback: open Health Engine directly
+      window.open('https://healthengine.com.au', '_blank');
+    }
+  </script>
 
   <script>
     // ── Mobile menu ──
