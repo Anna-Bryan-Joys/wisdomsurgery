@@ -737,7 +737,7 @@
           <img src="brand_assets/WisdomSurgery_Logo_Horizontal_Reversed-Picsart-BackgroundRemover.png" alt="Wisdom Surgery Clinic" class="h-8 w-auto mb-4" />
           <p class="text-navy-400 text-sm leading-relaxed">Oral & Maxillofacial Surgery by Dr Anna Raymond. Specialist care with a personal touch.</p>
           <div class="mt-4" id="he-inline-widget">
-            <script data-he-id="102322" data-alignment="left" data-he-fixed="false" data-background-color="#2BBFA4" src="https://healthengine.com.au/webplugin/appointments.js"></script>
+            <script data-he-id="102322" data-alignment="left" data-he-fixed="false" data-background-color="#2ab4b4" src="https://healthengine.com.au/webplugin/appointments.js"></script>
           </div>
         </div>
         <div>
@@ -794,9 +794,23 @@
     function heBookNow() {
       const btn = document.querySelector('#he-inline-widget a[href*="healthengine"], #he-inline-widget a');
       if (btn) { btn.click(); return; }
-      // Fallback: open Health Engine directly
       window.open('https://healthengine.com.au', '_blank');
     }
+
+    // Style the Health Engine button to match the site after it renders
+    function styleHEButton() {
+      const btn = document.querySelector('#he-inline-widget a, #he-inline-widget button');
+      if (btn) {
+        btn.style.cssText += 'background: linear-gradient(135deg, #2ab4b4 0%, #1e9696 100%) !important; border-radius: 9999px !important; font-family: inherit !important; font-weight: 600 !important; letter-spacing: 0.01em !important; box-shadow: none !important;';
+      }
+    }
+
+    // Try immediately, then retry as the widget may load asynchronously
+    document.addEventListener('DOMContentLoaded', () => {
+      styleHEButton();
+      setTimeout(styleHEButton, 500);
+      setTimeout(styleHEButton, 1500);
+    });
   </script>
 
   <script>
